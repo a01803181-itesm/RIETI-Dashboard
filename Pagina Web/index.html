@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Página principal - Rieti</title>
+        <link rel="stylesheet" href="/css/style.css">
+
+        <!-- Carga de Chart.js -->
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+
+        <script type="module" src="/js/navegacion.mjs"></script>
+    </head>
+    <body id="indexBody">
+        
+        <!-- Menú Lateral Sidebar -->
+        <aside id="menu">
+            <div id="perfil-de-usuario">
+                <img src="/imagenes/perfil-de-usuario.webp" alt="Usuario" width="24" height="24">
+                <p>Pedro Vázquez</p>
+            </div>
+
+            <div id="panelControl">
+                <h1 id="tituloRieti">ADMINISRTADOR</h1>
+                <p id="textoPanel">Panel de control</p>
+            </div>
+
+            <nav id="lista-menu">
+                <ul>
+                    <li style="background-color: #f1f5f9;"><a href="index.html"><img src="/imagenes/dashboard.svg" alt="Icono" width="16"><span>Dashboard</span></a></li>
+                    <li><a href="gestion_de_reportes.html"><img src="/imagenes/reportes.png" alt="Icono" width="16"><span>Gestión de reportes</span></a></li>
+                    <li><a href="estadisticas.html"><img src="/imagenes/estadisticas.webp" alt="Icono" width="16"><span>Estadísticas</span></a></li>
+                    <li id="cerrar-sesion"><a href="login.html"><img src="/imagenes/sesion.png" alt="Icono" width="16"><span>Cerrar Sesión</span></a></li>
+                </ul>
+            </nav>
+        </aside>
+            
+        <!-- Área de Contenido Principal -->
+        <main id="pagina">
+            <header id="header-pagina">
+                <h1>Dashboard</h1>
+                <p>Dashboards generales del sistema</p>
+            </header>
+            
+            <section id="fila-uno-reportes">
+                <div class="reportes-fila-uno" id="total-reportes">
+                    <h1>Total de reportes</h1>
+                    <p>142</p>
+                    <p id="resumen-total-reportes"><span style="color: #10b981;">+8.2%</span> de la última semana</p>
+                </div>
+                <div class="reportes-fila-uno">
+                    <h1 id="reportes-completados">Completados</h1>
+                    <p>98</p>
+                </div>
+                <div class="reportes-fila-uno">
+                    <h1 id="reportes-proceso">En proceso</h1>
+                    <p>32</p>
+                </div>
+                <div class="reportes-fila-uno">
+                    <h1 id="reportes-pendientes">Pendientes</h1>
+                    <p>12</p>
+                </div>
+            </section>
+
+            <section id="fila-dos-reportes">
+                <div id="estado-reportes">
+                    <header class="card-header">
+                        <h1>Estado de los Reportes</h1>
+                        <p>Municipio Atizapán de Zaragoza</p>
+                    </header>
+                    <div class="contenedor-canvas">
+                        <canvas id="grafica-estado-reportes"></canvas>
+                    </div>
+                </div>
+
+                <div id="acciones-rapidas">
+                    <h1>Acciones Rápidas</h1>
+                    <div id="revisar-reportes-pendientes">
+                        <p>Revisar reportes pendientes</p>
+                        <p class="cifra-pendiente">12</p>
+                    </div>
+                    <div id="botones-asignacion">
+                        <input id="asignacion" type="button" value="Asignación">
+                        <input id="solicitudes" type="button" value="Solicitudes">
+                    </div>
+                </div>
+            </section>
+
+            <section id="contenedor-tabla">
+                <div id="contenedor-header-tabla">
+                    <div id="header-tabla">
+                        <h1>Listado de Reportes</h1>
+                        <p>Reportes recientes</p>
+                    </div>
+                    <input id="boton-ver-todos" type="button" value="Ver todos" class="btn-ver-todos">
+                </div>
+
+                <div class="scrollableWrapper">
+                    <div class="scrollableContent">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Folio</th>
+                                    <th>Municipio</th>
+                                    <th>Fecha</th>
+                                    <th>Status</th>
+                                    <th>Acción</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>RIETI2025100FE541</td>
+                                    <td>ECATEPEC</td>
+                                    <td>22/07/2026</td>
+                                    <td><span class="status status-completado">Completado</span></td>
+                                    <td><input type="button" value="Ver" class="btn-tabla"></td>
+                                </tr>
+                                <tr>
+                                    <td>RIETI2025100FE542</td>
+                                    <td>JILOTZINGO</td>
+                                    <td>22/07/2026</td>
+                                    <td><span class="status status-pendiente">Pendiente</span></td>
+                                    <td><input type="button" value="Ver" class="btn-tabla"></td>
+                                </tr>
+                                <tr>
+                                    <td>RIETI2025100FE544</td>
+                                    <td>ATIZAPÁN DE ZARAGOZA</td>
+                                    <td>12/08/2026</td>
+                                    <td><span class="status status-progreso">En progreso</span></td>
+                                    <td><input type="button" value="Ver" class="btn-tabla"></td>
+                                </tr>
+                                <tr>
+                                    <td>RIETI2025100FE545</td>
+                                    <td>ECATEPEC</td>
+                                    <td>26/08/2026</td>
+                                    <td><span class="status status-completado">Completado</span></td>
+                                    <td><input type="button" value="Ver" class="btn-tabla"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                
+            </section>
+        </main>
+
+        <script type="module" src="/js/graficas.mjs"></script>
+    </body>
+</html>

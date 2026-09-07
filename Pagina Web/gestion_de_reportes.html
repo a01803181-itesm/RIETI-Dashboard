@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Página principal - Rieti</title>
+        <link rel="stylesheet" href="/css/style.css">
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+        <!-- Carga de Chart.js -->
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    </head>
+    <body id="indexBody">
+        
+        <!-- Menú Lateral Sidebar -->
+        <aside id="menu">
+            <div id="perfil-de-usuario">
+                <img src="/imagenes/perfil-de-usuario.webp" alt="Usuario" width="24" height="24">
+                <p>Pedro Vázquez</p>
+            </div>
+
+            <div id="panelControl">
+                <h1 id="tituloRieti">ADMINISRTADOR</h1>
+                <p id="textoPanel">Panel de control</p>
+            </div>
+
+            <nav id="lista-menu">
+                <ul>
+                    <li><a href="index.html"><img src="/imagenes/dashboard.svg" alt="Icono" width="16"><span>Dashboard</span></a></li>
+                    <li style="background-color: #f1f5f9;"><a href="gestion_de_reportes.html"><img src="/imagenes/reportes.png" alt="Icono" width="16"><span>Gestión de reportes</span></a></li>
+                    <li><a href="estadisticas.html"><img src="/imagenes/estadisticas.webp" alt="Icono" width="16"><span>Estadísticas</span></a></li>
+                    <li id="cerrar-sesion"><a href="login.html"><img src="/imagenes/sesion.png" alt="Icono" width="16"><span>Cerrar Sesión</span></a></li>
+                </ul>
+            </nav>
+        </aside>
+            
+        <!-- Área de Contenido Principal -->
+        <main id="pagina">
+            <header id="header-pagina">
+                <div id="header-gestion">
+                    <h1>Gestión de Reportes</h1>
+                    <!-- <label id="contenedor-buscador">
+                        <input id="buscador" type="search" placeholder="Ingrese Folio">
+                        <button id="botonBuscar"><i class="fas fa-search"></i></button>
+                    </label> -->
+                </div>
+            </header>
+
+            <section id="contenedor-tabla">
+                <div id="contenedor-header-tabla">
+                    <div id="header-tabla">
+                        <h1>Listado de Reportes</h1>
+                        <p>Reportes recientes</p>
+                    </div>
+                    <label id="contenedor-buscador">
+                        <input id="buscador" type="search" placeholder="Ingrese Folio">
+                        <!-- <img id="lupa" src="/imagenes/gestion_reportes/lupa.webp" alt="icono de lupa" height="12px"> -->
+                        <button id="botonBuscar"><i class="fas fa-search"></i></button>
+                    </label>
+                    <!-- <input type="button" value="Ver todos" class="btn-ver-todos"> -->
+                </div>
+
+                <div class="scrollableWrapper">
+                    <div class="scrollableContent">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Folio</th>
+                                    <th>Municipio</th>
+                                    <th>Fecha</th>
+                                    <th>Status</th>
+                                    <th>Acción</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>RIETI2025100FE544</td>
+                                    <td>ECATEPEC</td>
+                                    <td>29/08/2026</td>
+                                    <td><span class="status status-completado">Completado</span></td>
+                                    <td>
+                                        <div class="contenedor-botones-accion">
+                                            <input id="RIETI2025100FE544" type="button" value="Ver" class="btn-tabla">
+                                            <input type="button" value="Asignar" class="btn-tabla">
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>RIETI2025100FE543</td>
+                                    <td>JILOTZINGO</td>
+                                    <td>28/08/2026</td>
+                                    <td><span class="status status-pendiente">Pendiente</span></td>
+                                    <td>
+                                        <div class="contenedor-botones-accion">
+                                            <input type="button" value="Ver" class="btn-tabla">
+                                            <input type="button" value="Asignar" class="btn-tabla">
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>RIETI2025100FE542</td>
+                                    <td>ATIZAPÁN DE ZARAGOZA</td>
+                                    <td>27/08/2026</td>
+                                    <td><span class="status status-progreso">En progreso</span></td>
+                                    <td>
+                                        <div class="contenedor-botones-accion">
+                                            <input type="button" value="Ver" class="btn-tabla">
+                                            <input type="button" value="Asignar" class="btn-tabla">
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>RIETI2025100FE541</td>
+                                    <td>ECATEPEC</td>
+                                    <td>26/08/2026</td>
+                                    <td><span class="status status-completado">Completado</span></td>
+                                    <td>
+                                        <div class="contenedor-botones-accion">
+                                            <input type="button" value="Ver" class="btn-tabla">
+                                            <input type="button" value="Asignar" class="btn-tabla">
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>RIETI2025100FE540</td>
+                                    <td>ECATEPEC</td>
+                                    <td>26/08/2026</td>
+                                    <td><span class="status status-progreso">En progreso</span></td>
+                                    <td>
+                                        <div class="contenedor-botones-accion">
+                                            <input type="button" value="Ver" class="btn-tabla">
+                                            <input type="button" value="Asignar" class="btn-tabla">
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>RIETI2025100FE539</td>
+                                    <td>CUAUTITLÁN IZCALLI</td>
+                                    <td>25/08/2026</td>
+                                    <td><span class="status status-completado">Completado</span></td>
+                                    <td>
+                                        <div class="contenedor-botones-accion">
+                                            <input type="button" value="Ver" class="btn-tabla">
+                                            <input type="button" value="Asignar" class="btn-tabla">
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>RIETI2025100FE538</td>
+                                    <td>NAUCALPAN</td>
+                                    <td>23/08/2026</td>
+                                    <td><span class="status status-pendiente">Pendiente</span></td>
+                                    <td>
+                                        <div class="contenedor-botones-accion">
+                                            <input type="button" value="Ver" class="btn-tabla">
+                                            <input type="button" value="Asignar" class="btn-tabla">
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>RIETI2025100FE537</td>
+                                    <td>TULTITLÁN</td>
+                                    <td>23/08/2026</td>
+                                    <td><span class="status status-completado">Completado</span></td>
+                                    <td>
+                                        <div class="contenedor-botones-accion">
+                                            <input type="button" value="Ver" class="btn-tabla">
+                                            <input type="button" value="Asignar" class="btn-tabla">
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>RIETI2025100FE536</td>
+                                    <td>COACALCO</td>
+                                    <td>22/08/2026</td>
+                                    <td><span class="status status-progreso">En progreso</span></td>
+                                    <td>
+                                        <div class="contenedor-botones-accion">
+                                            <input type="button" value="Ver" class="btn-tabla">
+                                            <input type="button" value="Asignar" class="btn-tabla">
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>RIETI2025100FE535</td>
+                                    <td>JILOTZINGO</td>
+                                    <td>19/08/2026</td>
+                                    <td><span class="status status-progreso">En progreso</span></td>
+                                    <td>
+                                        <div class="contenedor-botones-accion">
+                                            <input type="button" value="Ver" class="btn-tabla">
+                                            <input type="button" value="Asignar" class="btn-tabla">
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>RIETI2025100FE534</td>
+                                    <td>TULTITLÁN</td>
+                                    <td>19/08/2026</td>
+                                    <td><span class="status status-completado">Completado</span></td>
+                                    <td>
+                                        <div class="contenedor-botones-accion">
+                                            <input type="button" value="Ver" class="btn-tabla">
+                                            <input type="button" value="Asignar" class="btn-tabla">
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>RIETI2025100FE533</td>
+                                    <td>JILOTZINGO</td>
+                                    <td>18/08/2026</td>
+                                    <td><span class="status status-progreso">En progreso</span></td>
+                                    <td>
+                                        <div class="contenedor-botones-accion">
+                                            <input type="button" value="Ver" class="btn-tabla">
+                                            <input type="button" value="Asignar" class="btn-tabla">
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>RIETI2025100FE532</td>
+                                    <td>CUAUTITLÁN IZCALLI</td>
+                                    <td>16/08/2026</td>
+                                    <td><span class="status status-pendiente">Pendiente</span></td>
+                                    <td>
+                                        <div class="contenedor-botones-accion">
+                                            <input type="button" value="Ver" class="btn-tabla">
+                                            <input type="button" value="Asignar" class="btn-tabla">
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>RIETI2025100FE531</td>
+                                    <td>ATIZAPÁN DE ZARAGOZA</td>
+                                    <td>16/08/2026</td>
+                                    <td><span class="status status-progreso">En progreso</span></td>
+                                    <td>
+                                        <div class="contenedor-botones-accion">
+                                            <input type="button" value="Ver" class="btn-tabla">
+                                            <input type="button" value="Asignar" class="btn-tabla">
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>RIETI2025100FE530</td>
+                                    <td>NAUCALPAN</td>
+                                    <td>15/08/2026</td>
+                                    <td><span class="status status-completado">Completado</span></td>
+                                    <td>
+                                        <div class="contenedor-botones-accion">
+                                            <input id="ver-reporte-unico" type="button" value="Ver" class="btn-tabla">
+                                            <input type="button" value="Asignar" class="btn-tabla">
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                
+            </section>
+        </main>
+
+        <script type="module" src="/js/graficas.mjs"></script>
+        <script type="module" src="/js/navegacion.mjs"></script>
+    </body>
+</html>

@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Página principal - Rieti</title>
+        <link rel="stylesheet" href="/css/style.css">
+
+        <!-- Carga de Chart.js -->
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    </head>
+    <body id="indexBody">
+        
+        <!-- Menú Lateral Sidebar -->
+        <aside id="menu">
+            <div id="perfil-de-usuario">
+                <img src="/imagenes/perfil-de-usuario.webp" alt="Usuario" width="24" height="24">
+                <p>Pedro Vázquez</p>
+            </div>
+
+            <div id="panelControl">
+                <h1 id="tituloRieti">ADMINISRTADOR</h1>
+                <p id="textoPanel">Panel de control</p>
+            </div>
+
+            <nav id="lista-menu">
+                <ul>
+                    <li><a href="index.html"><img src="/imagenes/dashboard.svg" alt="Icono" width="16"><span>Dashboard</span></a></li>
+                    <li style="background-color: #f1f5f9;"><a href="gestion_de_reportes.html"><img src="/imagenes/reportes.png" alt="Icono" width="16"><span>Gestión de reportes</span></a></li>
+                    <li><a href="estadisticas.html"><img src="/imagenes/estadisticas.webp" alt="Icono" width="16"><span>Estadísticas</span></a></li>
+                    <li id="cerrar-sesion"><a href="login.html"><img src="/imagenes/sesion.png" alt="Icono" width="16"><span>Cerrar Sesión</span></a></li>
+                </ul>
+            </nav>
+        </aside>
+            
+        <!-- Área de Contenido Principal -->
+        <main id="pagina">
+            <header id="header-pagina">
+                <h1>Detalles de Reporte</h1>
+                <p>RIETI2025100FE541</p>
+            </header>
+            
+            <section id="seccion-uno-detalles">
+                <div id="columna-uno-detalles">
+                    <div class="detalles-columna-uno" id="estado-detalles">
+                        <p>En proceso</p>
+                    </div>
+
+                    <div class="detalles-columna-uno">
+                        <h1>Información del Denunciante</h1>
+                        
+                        <div id="informacion-nombre">
+                            <h2>Nombre Completo</h2>
+                            <div id="persona">
+                                <img src="/imagenes/detalles_reporte/persona.png" alt="icono-correo" height="10px">
+                                <p>Renata Rojas</p>
+                            </div>
+                        </div>
+                        
+                        <div id="infromacion-correo">
+                            <h2>Correo Electrónico</h2>
+                            <div id="correo">
+                                <img src="/imagenes/detalles_reporte/correo.png" alt="icono-persona" height="10px">
+                                <p>rieti@correo.com</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="detalles-columna-uno">
+                        <h1>Evidencia Fotográfica</h1>
+                        <div class="contenedor-evidencia">
+                            <img src="imagenes/detalles_reporte/ejemplo-de-caso.jpg" alt="Evidencia fotográfica del caso">
+                        </div>
+                    </div>
+                </div>
+                
+                <div id="columna-dos-detalles">
+                    <div class="detalles-columna-dos" id="historial-detalles">
+                        <h1>Historial</h1>
+                        <ul>
+                            <li>
+                                <div class="punto-historial">
+                                    <p class="detalle-historial">Renata Rojas envió reporte</p>
+                                    <p class="fecha-historial">21 de Agosto de 2026</p>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="punto-historial">
+                                    <p class="detalle-historial">En progreso</p>
+                                    <p class="fecha-historial">24 de Agosto de 2026</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="detalles-columna-dos" id="ubicacion-caso">
+                        <h1>Ubicación del Caso</h1>
+                        <p id="direccion-caso">Av Lago de Guadalupe 32, Sin Nombre, 52920 Cdad. López Mateos, Méx.</p>
+                        <div id="mapa-detalle-reporte"></div>
+                    </div>
+                </div>
+                
+            </section>
+
+            <section id="seccion-dos-detalles">
+                <div id="detalles-caso">
+                    <div id="parte-superior-detalles">
+                        <div class="tarjeta-dato">
+                            <h1>Número de niños</h1>
+                            <div class="dato-detalle">
+                                <p>2</p>
+                            </div>
+                        </div>
+                        <div class="tarjeta-dato">
+                            <h1>Rango de edad</h1>
+                            <div class="dato-detalle">
+                                <p>8 - 10 años</p>
+                            </div>
+                        </div>
+                        <div class="tarjeta-dato">
+                            <h1>Horario de Trabajo</h1>
+                            <div class="dato-detalle">
+                                <p>8:00 - 14:00</p>
+                            </div>
+                        </div>
+                        <div class="tarjeta-dato">
+                            <h1>Tipo de trabajo</h1>
+                            <div class="dato-detalle">
+                                <p>Venta ambulante</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="parte-inferior-detalles">
+                        <div class="tarjeta-dato ancho-completo">
+                            <h1>Detalles Adicionales</h1>
+                            <div class="dato-detalle" id="detalles-adicionales">
+                                <p>Varios niños están vendiendo mazapanes en la esquina de la avenida.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <script type="module" src="/js/graficas.mjs"></script>
+        <script type="module" src="/js/mapa.mjs"></script>
+        <script type="module" src="/js/navegacion.mjs"></script>
+
+        <!-- CSS de Leaflet -->
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+
+        <!-- JS de Leaflet -->
+        <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+        <!-- Plugin de Mapa de Calor (leaflet-heat) -->
+        <script src="https://unpkg.com/leaflet.heat@0.2.0/dist/leaflet-heat.js"></script>
+    </body>
+</html>

@@ -1,0 +1,509 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: rgb(248, 250, 252);
+    font-family: Arial, Helvetica, sans-serif;
+    color: #333333;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; 
+}
+
+
+header {
+    text-align: left;
+    padding: 20px 10px;
+}
+
+header h1 {
+    font-size: 50px;
+    color: #1e293b;
+}
+
+
+main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+
+#contenedorLogin {
+    background-color: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px; 
+    padding: 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px; 
+}
+
+#mainHeader {
+    text-align: center;
+    margin-bottom: 8px;
+}
+
+#mainHeader h1 {
+    font-size: 24px;
+    margin-bottom: 6px;
+}
+
+#mainHeader p {
+    color: #64748b;
+    font-size: 14px;
+}
+
+.campo-input {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+main label {
+    font-size: 14px;
+    font-weight: 600;
+    color: #334155;
+}
+
+main input[type="text"],
+main input[type="tel"] {
+    width: 100%;
+    padding: 10px 14px;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.2s ease;
+}
+
+main input[type="text"]:focus,
+main input[type="tel"]:focus {
+    border-color: #0284c7;
+}
+
+#botonIniciarSesion {
+    width: 100%;
+    padding: 12px;
+    margin-top: 8px;
+    background-color: #0284c7;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+#botonIniciarSesion:hover {
+    background-color: #0369a1;
+}
+
+footer {
+    text-align: center;
+    padding: 16px;
+    color: #94a3b8;
+    font-size: 12px;
+}
+
+
+#perfil-de-usuario {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color:#e2e8f0;
+    width: 30%;
+    min-width: 55px;
+    text-align: center;
+    border-radius: 15px;
+    font-size: 10px;
+    margin-bottom: 5%;
+}
+
+#indexBody {
+    display: flex;
+    flex-direction: row;
+}
+
+#menu {
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(198, 209, 234);
+    width: 10%;
+    min-width: 150px;
+    align-items: center;
+    padding-top: 2%;
+    gap: 5px;
+}
+
+#tituloRieti {
+    font-size: 12px;
+    font-weight: 900;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+#panelControl {
+    font-size: 10px;
+    gap: 20px;
+    text-align: center;
+
+}
+
+#pagina {
+    width: 90%;
+    background-color: rgb(237, 238, 239);
+}
+
+
+#lista-menu {
+    width: 70%;
+}
+
+#lista-menu ul {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 10%;
+    font-size: 10px;
+    color: #333333;
+    list-style-type: none;
+}
+
+#lista-menu ul li {
+    width: 100%;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+#lista-menu ul li:hover {
+    background-color: #bbd2f0;
+}
+
+#cerrar-sesion {
+    color: red;
+}
+
+#pagina {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+#header-pagina {
+    background-color: white;
+    border-bottom: 1px solid rgb(246, 245, 249);
+    padding: 10px;
+    border-radius: 5px;
+}
+
+#fila-uno-reportes {
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+    padding: 0 10px 0 10px;
+}
+
+.reportes-fila-uno {
+    background-color: white;
+    border-radius: 10px;
+    padding: 10px;
+    width: 180px;
+}
+
+.reportes-fila-uno h1 {
+    font-size: 11px;
+    font-weight: 400;
+    border-radius: 5px;
+    padding: 2px;
+}
+
+.reportes-fila-uno p {
+    font-size: 30px;
+    font-weight: 600;
+}
+
+#resumen-total-reportes {
+    font-size: 8px;
+    color: #94a3b8;
+    font-weight: 200;
+}
+
+#reportes-completados {
+    background-color: rgba(0, 208, 114, 0.3);  
+}
+
+#reportes-proceso {
+    background-color: rgba(255, 255, 0, 0.45);
+}
+
+#reportes-pendientes {
+    background-color: rgba(255, 0, 0, 0.234);
+}
+
+#fila-dos-reportes {
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+    padding: 20px 10px 0 10px;
+    height: 350px;
+}
+
+#estado-reportes {
+    background-color: white;
+    border-radius: 10px;
+    padding: 10px;
+    width: 300px;
+}
+
+#estado-reportes h1 {
+    font-size: 14px;
+    font-weight: 800;
+    border-radius: 5px;
+    padding: 2px;
+}
+
+#estado-reportes p {
+    font-size: 12px;
+}
+
+#acciones-rapidas {
+    background-color: white;
+    border-radius: 10px;
+    padding: 10px;
+    width: 500px;
+}
+
+#revisar-reportes-pendientes {
+    border: solid rgba(255, 255, 0, 0.45);
+    border-radius: 10px;
+    padding: 5px;
+}
+
+#botones-asignacion {
+    padding-top: 5%;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    flex: 1;
+    gap: 20px;
+    text-align: center;
+}
+
+#asignacion, #solicitudes {
+    padding: 5% 10% 5% 10%;
+    border-radius: 10px;
+
+}
+
+#asignacion {
+    border: solid blue;
+}
+
+#solicitudes {
+    border: solid orange;
+}
+
+#contenedor-header-tabla {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+#header-tabla {
+    padding: 5%;
+}
+
+table {
+    width: 100%;
+    padding-left: 5%;
+}
+
+#contenedor-tabla {
+    background-color: white;
+    padding: 10px;
+}
+
+
+ /* --- Secciones Principales de Detalles --- */
+#seccion-uno-detalles {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+#columna-uno-detalles, 
+#columna-dos-detalles {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-width: 300px;
+    gap: 16px;
+}
+
+.detalles-columna-uno, 
+.detalles-columna-dos, 
+#detalles-caso {
+    background-color: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+/* Badge de Estado */
+#estado-detalles {
+    max-width: fit-content;
+    padding: 8px 12px;
+}
+
+#estado-detalles p {
+    color: #92400e;
+    font-size: 12px;
+    background-color: #fef3c7;
+    padding: 4px 10px;
+    border-radius: 4px;
+    font-weight: 600;
+}
+
+/* Tipografía de Encabezados */
+.detalles-columna-uno h1, 
+.detalles-columna-dos h1, 
+#detalles-caso h1 {
+    font-size: 15px;
+    font-weight: 700;
+    color: #0f172a;
+}
+
+.detalles-columna-uno h2 {
+    font-size: 12px;
+    color: #64748b;
+    font-weight: 600;
+}
+
+.detalles-columna-uno p, 
+.detalles-columna-dos p {
+    font-size: 13px;
+    color: #334155;
+}
+
+#informacion-nombre, 
+#informacion-correo {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+#persona, 
+#correo {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 8px;
+}
+
+#persona img, 
+#correo img {
+    object-fit: contain;
+}
+
+/* Evidencia Fotográfica */
+.contenedor-evidencia {
+    width: 100%;
+    max-height: 250px;
+    overflow: hidden;
+    border-radius: 6px;
+    border: 1px solid #e2e8f0;
+}
+
+.contenedor-evidencia img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* Historial */
+#historial-detalles ul {
+    padding-left: 20px;
+    color: #0284c7;
+    list-style-type: disc;
+}
+
+#historial-detalles ul li {
+    padding-bottom: 8px;
+}
+
+.detalle-historial {
+    color: #0f172a !important;
+    font-weight: 600;
+}
+
+.fecha-historial {
+    font-size: 11px !important;
+    color: #64748b !important;
+}
+
+/* Contenedor del Mapa */
+#mapa-detalle-reporte {
+    height: 280px;
+    width: 100%;
+    border-radius: 8px;
+    border: 1px solid #cbd5e1;
+}
+
+/* --- Sección Dos: Tarjetas de Datos de Caso --- */
+#seccion-dos-detalles {
+    margin-top: 10px;
+}
+
+#detalles-caso {
+    width: 100%;
+    gap: 16px;
+}
+
+#parte-superior-detalles {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 16px;
+    width: 100%;
+}
+
+#parte-inferior-detalles {
+    width: 100%;
+}
+
+.tarjeta-dato {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.tarjeta-dato.ancho-completo {
+    width: 100%;
+}
+
+.dato-detalle {
+    border: 1px solid #e2e8f0;
+    background-color: #f8fafc;
+    border-radius: 6px;
+    padding: 10px 14px;
+}
+
+.dato-detalle p {
+    font-size: 13px;
+    color: #1e293b;
+    font-weight: 500;
+}
