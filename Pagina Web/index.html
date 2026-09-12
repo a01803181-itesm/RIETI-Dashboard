@@ -6,6 +6,8 @@
         <title>Página principal - Rieti</title>
         <link rel="stylesheet" href="/css/style.css">
 
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
         <!-- Carga de Chart.js -->
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
@@ -80,9 +82,9 @@
                         <p>Revisar reportes pendientes</p>
                         <p class="cifra-pendiente">12</p>
                     </div>
-                    <div id="botones-asignacion">
-                        <input id="asignacion" type="button" value="Asignación">
-                        <input id="solicitudes" type="button" value="Solicitudes">
+                    <div id="botones-acciones-rapidas">
+                        <input id="revisar-reportes-completados" type="button" value="Ver Completados">
+                        <input id="revisar-reportes-progreso" type="button" value="Ver En Progreso">
                     </div>
                 </div>
             </section>
@@ -114,37 +116,199 @@
                                     <td>ECATEPEC</td>
                                     <td>22/07/2026</td>
                                     <td><span class="status status-completado">Completado</span></td>
-                                    <td><input type="button" value="Ver" class="btn-tabla"></td>
+                                    <td>
+                                        <div class="contenedor-boton-split">
+                                            <button class="boton-ver">Ver</button>
+                                            <div class="dropdown">
+                                                <button type="button" class="boton-dropdown">
+                                                    <i class="fa-solid fa-chevron-down"></i>
+                                                </button>
+                                                <div class="contenido-dropdown">
+                                                    <button type="button" class="opciones-contenido boton-asignar-estado">
+                                                        <i class="fa-solid fa-user-shield"></i>
+                                                        Asignar Estado
+                                                    </button>
+                                                    <button type="button" class="opciones-contenido boton-asignar-autoridad">
+                                                        <i class="fa-solid fa-user-shield"></i>
+                                                        Asignar Autoridad
+                                                    </button>
+                                                    <hr class="divisor-dropdown">
+                                                    <button type="button" class="opciones-contenido boton-eliminar">
+                                                        <i class="fa-solid fa-trash"></i>
+                                                        Eliminar
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>RIETI2025100FE542</td>
                                     <td>JILOTZINGO</td>
                                     <td>22/07/2026</td>
                                     <td><span class="status status-pendiente">Pendiente</span></td>
-                                    <td><input type="button" value="Ver" class="btn-tabla"></td>
+                                    <td>
+                                        <div class="contenedor-boton-split">
+                                            <button class="boton-ver">Ver</button>
+                                            <div class="dropdown">
+                                                <button type="button" class="boton-dropdown">
+                                                    <i class="fa-solid fa-chevron-down"></i>
+                                                </button>
+                                                <div class="contenido-dropdown">
+                                                    <button type="button" class="opciones-contenido boton-asignar-estado">
+                                                        <i class="fa-solid fa-user-shield"></i>
+                                                        Asignar Estado
+                                                    </button>
+                                                    <button type="button" class="opciones-contenido boton-asignar-autoridad">
+                                                        <i class="fa-solid fa-user-shield"></i>
+                                                        Asignar Autoridad
+                                                    </button>
+                                                    <hr class="divisor-dropdown">
+                                                    <button type="button" class="opciones-contenido boton-eliminar">
+                                                        <i class="fa-solid fa-trash"></i>
+                                                        Eliminar
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>RIETI2025100FE544</td>
                                     <td>ATIZAPÁN DE ZARAGOZA</td>
                                     <td>12/08/2026</td>
                                     <td><span class="status status-progreso">En progreso</span></td>
-                                    <td><input type="button" value="Ver" class="btn-tabla"></td>
+                                    <td>
+                                        <div class="contenedor-boton-split">
+                                            <button class="boton-ver">Ver</button>
+                                            <div class="dropdown">
+                                                <button type="button" class="boton-dropdown">
+                                                    <i class="fa-solid fa-chevron-down"></i>
+                                                </button>
+                                                <div class="contenido-dropdown">
+                                                    <button type="button" class="opciones-contenido boton-asignar-estado">
+                                                        <i class="fa-solid fa-user-shield"></i>
+                                                        Asignar Estado
+                                                    </button>
+                                                    <button type="button" class="opciones-contenido boton-asignar-autoridad">
+                                                        <i class="fa-solid fa-user-shield"></i>
+                                                        Asignar Autoridad
+                                                    </button>
+                                                    <hr class="divisor-dropdown">
+                                                    <button type="button" class="opciones-contenido boton-eliminar">
+                                                        <i class="fa-solid fa-trash"></i>
+                                                        Eliminar
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>RIETI2025100FE545</td>
                                     <td>ECATEPEC</td>
                                     <td>26/08/2026</td>
                                     <td><span class="status status-completado">Completado</span></td>
-                                    <td><input type="button" value="Ver" class="btn-tabla"></td>
+                                    <td>
+                                        <div class="contenedor-boton-split">
+                                            <button class="boton-ver">Ver</button>
+                                            <div class="dropdown">
+                                                <button type="button" class="boton-dropdown">
+                                                    <i class="fa-solid fa-chevron-down"></i>
+                                                </button>
+                                                <div class="contenido-dropdown">
+                                                    <button type="button" class="opciones-contenido boton-asignar-estado">
+                                                        <i class="fa-solid fa-user-shield"></i>
+                                                        Asignar Estado
+                                                    </button>
+                                                    <button type="button" class="opciones-contenido boton-asignar-autoridad">
+                                                        <i class="fa-solid fa-user-shield"></i>
+                                                        Asignar Autoridad
+                                                    </button>
+                                                    <hr class="divisor-dropdown">
+                                                    <button type="button" class="opciones-contenido boton-eliminar">
+                                                        <i class="fa-solid fa-trash"></i>
+                                                        Eliminar
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
                     </div>
                 </div>
-                
             </section>
+
+
+            <div id="modal-estado" class="modal">
+            <div class="modal-contenido">
+                <div class="modal-header">
+                    <h2><i class="fa-solid fa-list-check"></i>Estado del reporte</h2>
+                    <span id="cerrar-estado" class="cerrar">&times;</span>
+                </div>
+
+                <div class="modal-body">
+                    <div class="info-estado-actual">
+                        <span class="etiqueta-info">Estado actual:</span>
+                        <span class="badge-status status-pendiente">Pendiente</span>
+                    </div>
+
+                    <div class="campo-grupo">
+                        <label for="nuevoEstado">Cambiar estado a:</label>
+                        <div class="select-wrapper">
+                            <select id="nuevoEstado" class="input-select">
+                                <option value="pendiente">Pendiente</option>
+                                <option value="en-proceso">En proceso</option>
+                                <option value="completado">Completado</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="boton-cancelar" id="boton-cancelar-modal">Cancelar</button>
+                    <button type="button" id="guardarEstado" class="boton-guardar">Guardar cambios</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="modal-asignacion" class="modal">
+            <div class="modal-contenido">
+                
+                <div class="modal-header">
+                    <h2><i class="fa-solid fa-user"></i>Autoridad responsable</h2>
+                    <span id="cerrar-asignacion" class="cerrar">&times;</span>
+                </div>
+
+                <div class="modal-body">
+                    <div class="campo-grupo">
+                        <label for="nuevaAutoridad">Asignar autoridad:</label>
+                        <div class="select-wrapper">
+                            <select id="nuevaAutoridad" class="input-select">
+                                <option value="alimentadorA">Alimentador A</option>
+                                <option value="alimentadorB">Alimentador B</option>
+                                <option value="alimentadorC">Alimentador C</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="contenedor-comentarios">
+                        <h2>Notas de asignación</h2>
+                        <textarea id="comentarios-asignacion" placeholder="Comentarios sobre la asignación..." rows="4" cols="50"></textarea>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="boton-cancelar" id="boton-cancelar-modal-asignacion">Cancelar</button>
+                    <button type="button" class="boton-guardar" id="guardarAsignacion">Guardar cambios</button>
+                </div>
+            </div>
+        </div>
         </main>
 
         <script type="module" src="/js/graficas.mjs"></script>
+        <script type="module" src="/js/prueba.mjs"></script>
     </body>
 </html>
