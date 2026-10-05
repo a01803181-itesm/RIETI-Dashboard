@@ -1,12 +1,22 @@
-// ----------------------------------------- GRÁFICA ESTADO DE LOS REPORTES -----------------------------------------
-const canvasEstadoReportes = document.getElementById('grafica-estado-reportes');
-if(canvasEstadoReportes) {
-    const ctxEstadoReportes = canvasEstadoReportes.getContext('2d');
-    
-    const labelsEstadoReportes = ['Completados', 'En Progreso', 'Pendientes']
-    const valoresEstadoReportes = [5, 2, 3]
-    
-    // Gráfica Estado Reportes
+//Estado reportes
+export function canvasEstadoReportes(datos) {
+    const canvas = document.getElementById('grafica-estado-reportes');
+    if (!canvas) return;
+
+    // Formatear etiquetas (ej: "2_En_revision" -> "En revision")
+    const labelsEstadoReportes = datos.map(item => 
+        item.categoria.replace(/^\d+_/, '').replace(/_/g, ' ')
+    );
+    const valoresEstadoReportes = datos.map(item => item.total);
+
+    // Destruir instancia previa si el gráfico ya se había dibujado
+    const chartExistente = Chart.getChart(canvas);
+    if (chartExistente) {
+        chartExistente.destroy();
+    }
+
+    const ctxEstadoReportes = canvas.getContext('2d');
+
     new Chart(ctxEstadoReportes, {
         type: 'doughnut',
         data: {
@@ -15,9 +25,13 @@ if(canvasEstadoReportes) {
                 label: 'Municipio Atizapán de Zaragoza',
                 data: valoresEstadoReportes,
                 backgroundColor: [
-                    'rgba(0, 208, 114, 0.5)',
-                    'rgba(255, 255, 0, 0.5)',
-                    'rgba(255, 0, 0, 0.5)'
+                    'rgba(0, 208, 114, 0.6)',
+                    'rgba(255, 255, 0, 0.6)',
+                    'rgba(255, 0, 0, 0.6)',
+                    'rgba(54, 162, 235, 0.6)',
+                    'rgba(153, 102, 255, 0.6)',
+                    'rgba(255, 159, 64, 0.6)',
+                    'rgba(255, 0, 187, 0.6)'
                 ],
                 borderColor: '#fff',
                 borderWidth: 2
@@ -28,14 +42,12 @@ if(canvasEstadoReportes) {
             plugins: {
                 title: {
                     display: true,
-                    text: 'Reportes por Municipio'
+                    text: 'Reportes por Estatus'
                 }
             }
         }
     });
 }
-
-
 // ----------------------------------------- GRÁFICA REPORTES A TRAVÉS DEL TIEMPO -----------------------------------------
 const canvasReportesTeimpo = document.getElementById('grafica-reportes-por-tiempo');
 if(canvasReportesTeimpo) {
