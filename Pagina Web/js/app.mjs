@@ -1,10 +1,10 @@
 // js/app.mjs
-import { obtenerReportesPorEstatus } from './api_service.mjs';
-import { canvasEstadoReportes } from './graficas.mjs';
+import { obtenerReportesPorEstatus, obtenerReportesTravesTiempo } from './api_service.mjs';
+import { canvasEstadoReportes, canvasReportesTiempo } from './graficas.mjs';
 
 async function inicializarDashboard() {
   try {
-    const reportesPorEstatus = await obtenerReportesPorEstatus();
+    const [reportesPorEstatus, reportesTiempo] = await Promise.all([]);
     console.log('Datos recibidos:', reportesPorEstatus);
 
     canvasEstadoReportes(reportesPorEstatus);
