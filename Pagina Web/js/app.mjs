@@ -4,10 +4,16 @@ import { canvasEstadoReportes, canvasReportesTiempo } from './graficas.mjs';
 
 async function inicializarDashboard() {
   try {
-    const [reportesPorEstatus, reportesTiempo] = await Promise.all([]);
-    console.log('Datos recibidos:', reportesPorEstatus);
+    const [reportesPorEstatus, reportesTiempo] = await Promise.all([
+      obtenerReportesPorEstatus(),
+      obtenerReportesTravesTiempo()
+    ]);
+    console.log('Reportes por estatus:', reportesPorEstatus);
+    console.log('Reportes a través del tiempo:', reportesTiempo);
 
+    //Renderizar las graficas 
     canvasEstadoReportes(reportesPorEstatus);
+    canvasReportesTiempo(reportesTiempo);
   } catch (error) {
     console.error('No se pudieron cargar las estadísticas:', error);
   }
