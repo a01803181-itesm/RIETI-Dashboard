@@ -245,63 +245,37 @@ export function canvasReportesAutoridad(datos) {
 
 
 // ----------------------------------------- MAPA DE CALOR -----------------------------------------
-const contenedorMapa = document.getElementById('contenedor-mapa-calor');
 
-if (contenedorMapa) {
-    // 1. Inicializar mapa centrado en el Estado de México (Coordenadas: Lat, Lng, Zoom)
-    const mapa = L.map('contenedor-mapa-calor').setView([19.36, -99.45], 9);
+// js/graficas.mjs
 
-    // 2. Capa base de mapa (OpenStreetMap con estilo claro/neutro)
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        maxZoom: 19,
-        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-    }).addTo(mapa);
+export function canvasCoordenadas(datos) {
+    const contenedorMapa = document.getElementById('contenedor-mapa-calor');
 
+    if (contenedorMapa && Array.isArray(datos)) {
+        // 1. Inicializar el mapa centrado en el Estado de México
+        const mapa = L.map('contenedor-mapa-calor').setView([19.55, -99.20], 10);
 
-    // 3. Matriz de puntos de reportes [Latitud, Longitud, Intensidad (0.0 a 1.0)]
-    const puntosReportes = [
-        // Ecatepec (Alta concentración)
-        [19.6018, -99.0506, 0.9],
-        [19.6050, -99.0480, 0.8],
-        [19.5980, -99.0550, 1.0],
-        [19.6100, -99.0400, 0.7],
+        // 2. Capa base de mapa
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(mapa);
 
-        // Naucalpan de Juárez
-        [19.4785, -99.2396, 0.8],
-        [19.4820, -99.2310, 0.6],
-        [19.4700, -99.2450, 0.9],
+        // 3. Mapear los datos que vienen del servidor: [{lat, lng}, ...] a [lat, lng, intensidad]
+        const puntosReportes = datos.map(item => [item.lat, item.lng, 1.0]);
 
-        // Atizapán de Zaragoza
-        [19.5574, -99.2543, 0.5],
-        [19.5610, -99.2500, 0.4],
-
-        // Cuautitlán Izcalli
-        [19.6480, -99.2132, 0.7],
-        [19.6520, -99.2100, 0.6],
-
-        // Toluca
-        [19.2826, -99.6557, 0.8],
-        [19.2880, -99.6500, 0.7],
-        [19.2750, -99.6600, 0.9],
-
-        // Jilotzingo
-        [19.5218, -99.3900, 0.3],
-
-        // Tultitlán
-        [19.6350, -99.1680, 0.6]
-    ];
-
-    // 4. Configurar e instanciar la capa de mapa de calor
-    const mapaCalor = L.heatLayer(puntosReportes, {
-        radius: 25,       // Radio de alcance de cada punto en píxeles
-        blur: 15,         // Nivel de difuminado del calor
-        maxZoom: 13,      // Zoom máximo donde el calor alcanza máxima intensidad
-        max: 1.0,         // Valor máximo de densidad
-        gradient: {       // Escala de colores según la densidad (de 0.0 a 1.0)
-            0.2: '#0284c7', // Azul (Baja densidad)
-            0.5: '#f59e0b', // Amarillo/Naranja (Media densidad)
-            0.8: '#ef4444', // Rojo (Alta densidad)
-            1.0: '#991b1b'  // Rojo Oscuro (Crítico)
-        }
-    }).addTo(mapa);
+        // 4. Instanciar el mapa de calor
+        L.heatLayer(puntosReportes, {
+            radius: 25,       // Radio en píxeles de cada punto
+            blur: 15,         // Difuminado
+            maxZoom: 13,      // Nivel de zoom donde el calor alcanza la máxima densidad
+            max: 3.0,         // Define cuántos puntos superpuestos se necesitan para llegar al rojo oscuro
+            gradient: {
+                0.2: '#0284c7', // Azul
+                0.5: '#f59e0b', // Amarillo / Naranja
+                0.8: '#ef4444', // Rojo
+                1.0: '#991b1b'  // Rojo Oscuro
+            }
+        }).addTo(mapa);
+    }
 }

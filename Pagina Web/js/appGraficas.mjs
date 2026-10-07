@@ -3,13 +3,15 @@ import {
   obtenerReportesPorEstatus,
   obtenerReportesTravesTiempo,
   obtenerReportesPorMunicipio,
-  obtenerReportesPorAutoridad
+  obtenerReportesPorAutoridad,
+  obtenerCoordenadas
 } from './api_service.mjs';
 import {
   canvasEstadoReportes,
   canvasReportesTiempo,
   canvasReportesMunicipio,
-  canvasReportesAutoridad
+  canvasReportesAutoridad,
+  canvasCoordenadas
 } from './graficas.mjs';
 
 async function inicializarDashboard() {
@@ -18,24 +20,29 @@ async function inicializarDashboard() {
       reportesPorEstatus,
       reportesTiempo,
       reportesMunicipio,
-      reportesAutoridad
+      reportesAutoridad,
+      reportesCoordenadas
     ] = await Promise.all([
       obtenerReportesPorEstatus(),
       obtenerReportesTravesTiempo(),
       obtenerReportesPorMunicipio(),
-      obtenerReportesPorAutoridad()
+      obtenerReportesPorAutoridad(),
+      obtenerCoordenadas()
     ]);
     console.log('Reportes por estatus:', reportesPorEstatus);
     console.log('Reportes a través del tiempo:', reportesTiempo);
     console.log('Reportes por municipio:', reportesMunicipio);
     console.log('Reportes por autoridad', reportesAutoridad);
+    console.log('Reportes coordenadas (mapa de calor)', reportesCoordenadas);
 
 
     //Renderizar las graficas 
     canvasEstadoReportes(reportesPorEstatus);
     canvasReportesTiempo(reportesTiempo);
     canvasReportesMunicipio(reportesMunicipio);
-    canvasReportesAutoridad(reportesAutoridad)
+    canvasReportesAutoridad(reportesAutoridad);
+    canvasCoordenadas(reportesCoordenadas);
+    
   } catch (error) {
     console.error('No se pudieron cargar las estadísticas:', error);
   }
