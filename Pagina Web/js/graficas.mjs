@@ -1,10 +1,10 @@
-//Estado reportes
+// ----------------------------------------- GRÁFICA REPORTES SEGUN SU ESTADO -----------------------------------------
 export function canvasEstadoReportes(datos) {
     const canvas = document.getElementById('grafica-estado-reportes');
     if (!canvas) return;
 
     // Formatear etiquetas (ej: "2_En_revision" -> "En revision")
-    const labelsEstadoReportes = datos.map(item => 
+    const labelsEstadoReportes = datos.map(item =>
         item.categoria.replace(/^\d+_/, '').replace(/_/g, ' ')
     );
     const valoresEstadoReportes = datos.map(item => item.total);
@@ -49,24 +49,32 @@ export function canvasEstadoReportes(datos) {
     });
 }
 // ----------------------------------------- GRÁFICA REPORTES A TRAVÉS DEL TIEMPO -----------------------------------------
-const canvasReportesTeimpo = document.getElementById('grafica-reportes-por-tiempo');
-if(canvasReportesTeimpo) {
-    const ctxReportesPorTiempo = canvasReportesTeimpo.getContext('2d');
-    
-    const labelsReportesPorTiempo = ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic']
-    const valoresReportesPorTiempo = [5.5, 5, 6.5, 6, 7.5, 7, 8.5, 8, 9.5, 9, 10.5, 10]
+// js/graficas.mjs
 
-    // Gráfica Reportes por Tiempo
+export function canvasReportesTiempo(datos) {
+    const canvasReportesTiempo = document.getElementById('grafica-reportes-por-tiempo');
+    if (!canvasReportesTiempo || !Array.isArray(datos)) return;
+
+    const ctxReportesPorTiempo = canvasReportesTiempo.getContext('2d');
+
+    // Invertimos una copia del arreglo para mostrar los meses de más antiguo a más reciente
+    const datosOrdenados = [...datos].reverse();
+
+    // Extraemos 'categoria' para los labels y 'total' para los valores
+    const labelsReportesPorTiempo = datosOrdenados.map(item => item.categoria);
+    const valoresReportesPorTiempo = datosOrdenados.map(item => item.total);
+
     new Chart(ctxReportesPorTiempo, {
         type: 'line',
         data: {
             labels: labelsReportesPorTiempo,
             datasets: [{
-                label: 'Reportes Por Tiempo',
+                label: 'Reportes por tiempo',
                 data: valoresReportesPorTiempo,
                 borderColor: '#0284c7',
                 backgroundColor: 'rgba(2, 132, 199, 0.1)',
-                fill: true
+                fill: true,
+                tension: 0.3
             }]
         },
         options: {
@@ -87,17 +95,18 @@ if(canvasReportesTeimpo) {
                     type: 'linear',
                     display: true,
                     position: 'left',
-                    beginAtZero: true
+                    beginAtZero: true,
+                    ticks: {
+                        stepSize: 1 // Asegura que solo muestre números enteros para los reportes
+                    }
                 }
-
             }
         }
     });
 }
-
 // ----------------------------------------- GRÁFICA REPORTES POR MUNICIPIO -----------------------------------------
 const canvasReportesMunicipio = document.getElementById('grafica-reportes-por-municipio');
-if(canvasReportesMunicipio) {
+if (canvasReportesMunicipio) {
     const ctxReportesMunicipio = canvasReportesMunicipio.getContext('2d');
 
     const labelResportesMunicipio = ['Naucalpan', 'Atizapán', 'Izcalli', 'Ecatepec', 'Jilotzingo', 'Tultitlán', 'Coacalco']
@@ -116,7 +125,7 @@ if(canvasReportesMunicipio) {
                     backgroundColor: 'rgba(199, 107, 2, 0.4)',
                     borderWidth: 1
                 }
-        ]
+            ]
         },
         options: {
             responsive: true,
@@ -141,7 +150,7 @@ if(canvasReportesMunicipio) {
 
 // ----------------------------------------- GRÁFICA REPORTES POR RANGO DE HORA -----------------------------------------
 const canvasReportesRangoHora = document.getElementById('grafica-reportes-rango-hora');
-if(canvasReportesRangoHora) {
+if (canvasReportesRangoHora) {
     const ctxReportesRangoHora = canvasReportesRangoHora.getContext('2d');
 
     const labelResportesRangoHora = ['8:00 - 10:00', '10:00 - 12:00', '12:00 - 14:00', '14:00 - 16:00', '16:00 - 18:00', '18:00 - 20:00', '20:00 - 22:00']
@@ -185,9 +194,9 @@ if(canvasReportesRangoHora) {
 
 // ----------------------------------------- GRÁFICA RENDIMIENTO POR AUTORIDAD -----------------------------------------
 const canvasRendimientoAutoridad = document.getElementById('grafica-rendimiento-por-autoridad');
-if(canvasRendimientoAutoridad) {
+if (canvasRendimientoAutoridad) {
     const ctxRendimientoAutoridad = canvasRendimientoAutoridad.getContext('2d');
-    
+
     const labelsRendimientoAutoridad = ['Pedro Vázquez', 'Alexander Mejía', 'Giancarlo Moreno', 'César Rodríguez']
     const valoresRendimientoAutoridad = [63, 47, 52, 81]
 
@@ -202,7 +211,7 @@ if(canvasRendimientoAutoridad) {
                     data: valoresRendimientoAutoridad,
                     borderColor: '#5b02c7',
                     backgroundColor: 'rgba(107, 2, 199, 0.4)',
-                
+
                 }
             ]
         },
@@ -236,11 +245,11 @@ if (contenedorMapa) {
     const mapa = L.map('contenedor-mapa-calor').setView([19.36, -99.45], 9);
 
     // 2. Capa base de mapa (OpenStreetMap con estilo claro/neutro)
-   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         maxZoom: 19,
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
     }).addTo(mapa);
-        
+
 
     // 3. Matriz de puntos de reportes [Latitud, Longitud, Intensidad (0.0 a 1.0)]
     const puntosReportes = [
