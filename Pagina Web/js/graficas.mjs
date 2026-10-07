@@ -108,12 +108,12 @@ export function canvasReportesTiempo(datos) {
 // ----------------------------------------- GRÁFICA REPORTES POR MUNICIPIO -----------------------------------------
 export function canvasReportesMunicipio(datos) {
     const canvasReportesMunicipio = document.getElementById('grafica-reportes-por-municipio');
-    if (!canvasReportesTiempo || !Array.isArray(datos)) return;
+    if (!canvasReportesMunicipio || !Array.isArray(datos)) return;
 
     const ctxReportesMunicipio = canvasReportesMunicipio.getContext('2d');
 
     const labelResportesMunicipio = datos.map(item => item.categoria);
-    const valoresReportesMunicipio = datos.map(item =>  item.total);
+    const valoresReportesMunicipio = datos.map(item => item.total);
 
     //Gráficas Reportes por Municipio
     new Chart(ctxReportesMunicipio, {
@@ -196,12 +196,15 @@ if (canvasReportesRangoHora) {
 }
 
 // ----------------------------------------- GRÁFICA RENDIMIENTO POR AUTORIDAD -----------------------------------------
-const canvasRendimientoAutoridad = document.getElementById('grafica-rendimiento-por-autoridad');
-if (canvasRendimientoAutoridad) {
+export function canvasReportesAutoridad(datos) {
+    const canvasRendimientoAutoridad = document.getElementById('grafica-rendimiento-por-autoridad');
     const ctxRendimientoAutoridad = canvasRendimientoAutoridad.getContext('2d');
 
-    const labelsRendimientoAutoridad = ['Pedro Vázquez', 'Alexander Mejía', 'Giancarlo Moreno', 'César Rodríguez']
-    const valoresRendimientoAutoridad = [63, 47, 52, 81]
+    if (!canvasReportesMunicipio || !Array.isArray(datos)) return;
+
+
+    const labelsRendimientoAutoridad = datos.map(item => item.categoria);
+    const valoresRendimientoAutoridad = datos.map(item => item.total);
 
     //Gráfica Rendimiento por Autoridad
     new Chart(ctxRendimientoAutoridad, {
@@ -238,6 +241,7 @@ if (canvasRendimientoAutoridad) {
         }
     })
 }
+
 
 
 // ----------------------------------------- MAPA DE CALOR -----------------------------------------
