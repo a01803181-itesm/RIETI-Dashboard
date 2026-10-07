@@ -113,3 +113,17 @@ export async function obtenerPorcentajeReportesPendientes() {
         throw error;
     }
 }
+
+export async function obtenerPorcentajeReportesEnProceso() {
+    try {
+        const response = await fetch(`${API_URL}/v1/reportes/en-proceso`);
+        if(!response.ok) {
+            throw new Error(`Error al obtener el porcentaje de reportes en proceso: ${response.status}`);
+        }
+
+        return await response.json();
+    } catch(error) {
+        console.error('Error al obtener el porcentaje de reportes en proceso:', error);
+        throw error;
+    }
+}
