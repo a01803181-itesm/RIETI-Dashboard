@@ -31,7 +31,8 @@ export function canvasEstadoReportes(datos) {
                     'rgba(54, 162, 235, 0.6)',
                     'rgba(153, 102, 255, 0.6)',
                     'rgba(255, 159, 64, 0.6)',
-                    'rgba(255, 0, 187, 0.6)'
+                    'rgba(255, 81, 209, 0.6)',
+                    'rgb(0, 255, 238)'
                 ],
                 borderColor: '#fff',
                 borderWidth: 2
@@ -105,12 +106,14 @@ export function canvasReportesTiempo(datos) {
     });
 }
 // ----------------------------------------- GRÁFICA REPORTES POR MUNICIPIO -----------------------------------------
-const canvasReportesMunicipio = document.getElementById('grafica-reportes-por-municipio');
-if (canvasReportesMunicipio) {
+export function canvasReportesMunicipio(datos) {
+    const canvasReportesMunicipio = document.getElementById('grafica-reportes-por-municipio');
+    if (!canvasReportesTiempo || !Array.isArray(datos)) return;
+
     const ctxReportesMunicipio = canvasReportesMunicipio.getContext('2d');
 
-    const labelResportesMunicipio = ['Naucalpan', 'Atizapán', 'Izcalli', 'Ecatepec', 'Jilotzingo', 'Tultitlán', 'Coacalco']
-    const valoresReportesMunicipio = [10, 2, 6, 4, 12, 5, 7]
+    const labelResportesMunicipio = datos.map(item => item.categoria);
+    const valoresReportesMunicipio = datos.map(item =>  item.total);
 
     //Gráficas Reportes por Municipio
     new Chart(ctxReportesMunicipio, {
