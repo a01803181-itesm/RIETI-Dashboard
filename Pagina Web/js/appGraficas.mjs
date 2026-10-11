@@ -14,6 +14,16 @@ import {
   canvasCoordenadas
 } from './graficas.mjs';
 
+/**
+ * Inicializa el dashboard principal de la aplicación.
+ * Realiza peticiones concurrentes para obtener todas las estadísticas necesarias
+ * y posteriormente renderiza cada una de las gráficas correspondientes.
+ * 
+ * @async
+ * @function inicializarDashboard
+ * @returns {Promise<void>} No retorna ningún valor, solo ejecuta efectos secundarios en la interfaz.
+ * @throws {Error} Captura y registra en consola si ocurre un error al cargar o renderizar las estadísticas.
+ */
 async function inicializarDashboard() {
   try {
     const [
@@ -48,6 +58,10 @@ async function inicializarDashboard() {
   }
 }
 
+/**
+ * Escucha el estado del DOM para asegurar que la página esté completamente cargada 
+ * antes de inicializar el dashboard. Si el documento ya está listo, lo ejecuta de inmediato.
+ */
 if (document.readyState === 'loading') {
   document.addEventListener('DOMContentLoaded', inicializarDashboard);
 } else {

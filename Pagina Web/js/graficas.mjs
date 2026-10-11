@@ -1,4 +1,13 @@
 // ----------------------------------------- GRÁFICA REPORTES SEGUN SU ESTADO -----------------------------------------
+
+/**
+ * Renderiza una gráfica de dona con la distribución de los reportes según su estatus.
+ * Destruye cualquier instancia previa asociada al canvas para evitar conflictos de Chart.js.
+ * 
+ * @function canvasEstadoReportes
+ * @param {Array<Object>} datos - Lista de objetos con la información de los reportes (ej. { categoria: "2_En_revision", total: 10 }).
+ * @returns {void}
+ */
 export function canvasEstadoReportes(datos) {
     const canvas = document.getElementById('grafica-estado-reportes');
     if (!canvas) return;
@@ -52,6 +61,13 @@ export function canvasEstadoReportes(datos) {
 // ----------------------------------------- GRÁFICA REPORTES A TRAVÉS DEL TIEMPO -----------------------------------------
 // js/graficas.mjs
 
+/**
+ * Renderiza una gráfica de líneas para mostrar la evolución de los reportes a lo largo del tiempo.
+ * 
+ * @function canvasReportesTiempo
+ * @param {Array<Object>} datos - Lista de objetos con fecha/periodo y su respectivo total.
+ * @returns {void}
+ */
 export function canvasReportesTiempo(datos) {
     const canvasReportesTiempo = document.getElementById('grafica-reportes-por-tiempo');
     if (!canvasReportesTiempo || !Array.isArray(datos)) return;
@@ -106,6 +122,14 @@ export function canvasReportesTiempo(datos) {
     });
 }
 // ----------------------------------------- GRÁFICA REPORTES POR MUNICIPIO -----------------------------------------
+
+/**
+ * Renderiza una gráfica de barras con la cantidad de reportes agrupados por municipio.
+ * 
+ * @function canvasReportesMunicipio
+ * @param {Array<Object>} datos - Lista de objetos que contienen la categoría del municipio y el total.
+ * @returns {void}
+ */
 export function canvasReportesMunicipio(datos) {
     const canvasReportesMunicipio = document.getElementById('grafica-reportes-por-municipio');
     if (!canvasReportesMunicipio || !Array.isArray(datos)) return;
@@ -152,6 +176,10 @@ export function canvasReportesMunicipio(datos) {
 }
 
 // ----------------------------------------- GRÁFICA REPORTES POR RANGO DE HORA -----------------------------------------
+
+/**
+ * Renderiza una gráfica estática de barras con la distribución de reportes según el rango horario.
+ */
 const canvasReportesRangoHora = document.getElementById('grafica-reportes-rango-hora');
 if (canvasReportesRangoHora) {
     const ctxReportesRangoHora = canvasReportesRangoHora.getContext('2d');
@@ -196,6 +224,14 @@ if (canvasReportesRangoHora) {
 }
 
 // ----------------------------------------- GRÁFICA RENDIMIENTO POR AUTORIDAD -----------------------------------------
+
+/**
+ * Renderiza una gráfica de barras horizontales con el rendimiento o carga de trabajo por autoridad.
+ * 
+ * @function canvasReportesAutoridad
+ * @param {Array<Object>} datos - Lista de objetos con la autoridad correspondiente y su total de reportes.
+ * @returns {void}
+ */
 export function canvasReportesAutoridad(datos) {
     const canvasRendimientoAutoridad = document.getElementById('grafica-rendimiento-por-autoridad');
     const ctxRendimientoAutoridad = canvasRendimientoAutoridad.getContext('2d');
@@ -248,6 +284,14 @@ export function canvasReportesAutoridad(datos) {
 
 // js/graficas.mjs
 
+
+/**
+ * Inicializa un mapa interactivo de Leaflet y dibuja una capa de calor basada en las coordenadas de los reportes.
+ * 
+ * @function canvasCoordenadas
+ * @param {Array<Object>} datos - Lista de objetos que contienen latitud y longitud (ej. { lat: 19.5, lng: -99.2 }).
+ * @returns {void}
+ */
 export function canvasCoordenadas(datos) {
     const contenedorMapa = document.getElementById('contenedor-mapa-calor');
 
