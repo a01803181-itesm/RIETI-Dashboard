@@ -323,3 +323,27 @@ export function canvasCoordenadas(datos) {
         }).addTo(mapa);
     }
 }
+
+export function datoPorcentajeEstadisticasPendientes(dato) {
+    const porcentaje = document.getElementById('porcentaje-reportes-pendientes');
+
+    porcentaje.textContent = toString(dato)
+}
+
+export function datoPorcentajeEstadisticasEnProceso(dato) {
+    const porcentaje = document.getElementById('porcentaje-reportes-en-proceso');
+
+    porcentaje.textContent = toString(dato)
+}
+
+export function datoPromedioResolucion(dato) {
+    const porcentaje = document.getElementById('dias-promedio-resolucion');
+
+    porcentaje.textContent = toString(dato)
+}
+
+export function datoPendientesUltimaSemana(dato) {
+    const porcentaje = document.getElementById('pendientes-ultima-semana');
+
+    porcentaje.textContent = toString(dato)
+}

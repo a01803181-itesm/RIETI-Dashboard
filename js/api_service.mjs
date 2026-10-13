@@ -152,7 +152,7 @@ export async function obtenerEstadisticasPromedioResolucion() {
  */
 export async function obtenerReportesPendientesUltimaSemana() {
     try {
-        const response = await fetch(`${API_URL}/v1/reportes/pendientes-ultima-semana`);
+        const response = await fetch(`${API_URL}/v1/reportes/estadisticas/pendientes-ultima-semana`);
         if(!response.ok) {
             throw new Error(`Error al obtener los reportes pendientes de la última semana: ${response.status}`);
         }

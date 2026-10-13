@@ -4,14 +4,22 @@ import {
   obtenerReportesAtravesTiempo,
   obtenerReportesPorMunicipio,
   obtenerReportesPorAutoridad,
-  obtenerCoordenadas
+  obtenerCoordenadas,
+  obtenerEstadisticasPromedioResolucion,
+  obtenerReportesPendientesUltimaSemana,
+  obtenerPorcentajeReportesEnProceso,
+  obtenerPorcentajeReportesPendientes,
 } from './api_service.mjs';
 import {
   canvasEstadoReportes,
   canvasReportesTiempo,
   canvasReportesMunicipio,
   canvasReportesAutoridad,
-  canvasCoordenadas
+  canvasCoordenadas,
+  datoPromedioResolucion,
+  datoPendientesUltimaSemana,
+  datoPorcentajeEstadisticasEnProceso,
+  datoPorcentajeEstadisticasPendientes
 } from './graficas.mjs';
 
 /**
@@ -58,6 +66,36 @@ async function inicializarDashboard() {
   }
 }
 
+
+async function inicializarDatos() {
+  try {
+    const [
+      promedioResolucion,
+      pendientesUltimaSemana,
+      porcentajeReportesEnProceso,
+      porcentajeReportesPendientes
+    ] = await Promise.all([
+      obtenerEstadisticasPromedioResolucion(),
+      obtenerReportesPendientesUltimaSemana(),
+      obtenerPorcentajeReportesEnProceso(),
+      obtenerPorcentajeReportesPendientes()
+    ]);
+    console.log('Promedio de resolución:', promedioResolucion);
+    console.log('Pendientes última semana:', pendientesUltimaSemana);
+    console.log('Porcentaje en proceso:', porcentajeReportesEnProceso);
+    console.log('Porcentaje pendientes:', porcentajeReportesPendientes);
+
+    datoPromedioResolucion(promedioResolucion);
+    datoPendientesUltimaSemana(pendientesUltimaSemana);
+    datoPorcentajeEstadisticasEnProceso(porcentajeReportesEnProceso);
+    datoPorcentajeEstadisticasPendientes(porcentajeReportesPendientes);
+
+  } catch (error) {
+    console.error('No se pudieron cargar los datos de las estadísticas:', error);
+  }
+}
+
+
 /**
  * Escucha el estado del DOM para asegurar que la página esté completamente cargada 
  * antes de inicializar el dashboard. Si el documento ya está listo, lo ejecuta de inmediato.
@@ -66,4 +104,10 @@ if (document.readyState === 'loading') {
   document.addEventListener('DOMContentLoaded', inicializarDashboard);
 } else {
   inicializarDashboard();
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', inicializarDatos);
+} else {
+  inicializarDatos();
 }
