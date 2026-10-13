@@ -1,7 +1,7 @@
 // js/app.mjs
 import {
   obtenerReportesPorEstatus,
-  obtenerReportesTravesTiempo,
+  obtenerReportesAtravesTiempo,
   obtenerReportesPorMunicipio,
   obtenerReportesPorAutoridad,
   obtenerCoordenadas
@@ -34,7 +34,7 @@ async function inicializarDashboard() {
       reportesCoordenadas
     ] = await Promise.all([
       obtenerReportesPorEstatus(),
-      obtenerReportesTravesTiempo(),
+      obtenerReportesAtravesTiempo(),
       obtenerReportesPorMunicipio(),
       obtenerReportesPorAutoridad(),
       obtenerCoordenadas()
