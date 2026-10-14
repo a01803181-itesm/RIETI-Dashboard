@@ -34,9 +34,12 @@ export function canvasEstadoReportes(datos) {
                 label: 'Municipio Atizapán de Zaragoza',
                 data: valoresEstadoReportes,
                 backgroundColor: [
-                    'rgba(0, 208, 114, 0.6)',
-                    'rgba(255, 255, 0, 0.6)',
-                    'rgba(255, 0, 0, 0.6)',
+                    // 'rgba(0, 208, 114, 0.6)',
+                    // 'rgba(255, 255, 0, 0.6)',
+                    // 'rgba(255, 0, 0, 0.6)',
+                    '#74fdb6',
+                    '#f96868',
+                    '#fcdd61',
                     'rgba(54, 162, 235, 0.6)',
                     'rgba(153, 102, 255, 0.6)',
                     'rgba(255, 159, 64, 0.6)',
@@ -324,26 +327,54 @@ export function canvasCoordenadas(datos) {
     }
 }
 
-export function datoPorcentajeEstadisticasPendientes(dato) {
-    const porcentaje = document.getElementById('porcentaje-reportes-pendientes');
+// export function datoPorcentajeEstadisticasPendientes(dato) {
+//     const porcentaje = document.getElementById('porcentaje-reportes-pendientes');
 
-    porcentaje.textContent = toString(dato)
+//     porcentaje.textContent = String(dato)
+// }
+
+export function datoPorcentajeEstadisticasPendientes({ data = 0} = {}) {
+    const elemento = document.getElementById('porcentaje-reportes-pendientes');
+    if(elemento) {
+        elemento.textContent = `${Number(data).toFixed(1)}`;
+    }
 }
 
-export function datoPorcentajeEstadisticasEnProceso(dato) {
-    const porcentaje = document.getElementById('porcentaje-reportes-en-proceso');
+// export function datoPorcentajeEstadisticasEnProceso(dato) {
+//     const porcentaje = document.getElementById('porcentaje-reportes-en-proceso');
 
-    porcentaje.textContent = toString(dato)
+//     porcentaje.textContent = String(dato)
+// }
+
+export function datoPorcentajeEstadisticasEnProceso({ data = 0} = {}) {
+    const elemento = document.getElementById('porcentaje-reportes-en-proceso');
+    if(elemento) {
+        elemento.textContent = `${Number(data).toFixed(1)}`;
+    }
 }
 
-export function datoPromedioResolucion(dato) {
-    const porcentaje = document.getElementById('dias-promedio-resolucion');
+// export function datoPromedioResolucion(dato) {
+//     const porcentaje = document.getElementById('dias-promedio-resolucion');
 
-    porcentaje.textContent = toString(dato)
+//     porcentaje.textContent = String(dato)
+// }
+
+export function datoPromedioResolucion({ data = 0} = {}) {
+    const elemento = document.getElementById('dias-promedio-resolucion');
+    if(elemento) {
+        elemento.textContent = `${Number(data)}`;
+    }
 }
 
-export function datoPendientesUltimaSemana(dato) {
-    const porcentaje = document.getElementById('pendientes-ultima-semana');
+// export function datoPendientesUltimaSemana(dato) {
+//     const porcentaje = document.getElementById('pendientes-ultima-semana');
 
-    porcentaje.textContent = toString(dato)
+//     porcentaje.textContent = String(dato)
+// }
+
+export function datoPendientesUltimaSemana({ data = 0} = {}) {
+    const elemento = document.getElementById('pendientes-ultima-semana');
+    if(elemento) {
+        elemento.textContent = `${Number(data)}`;
+    }
 }

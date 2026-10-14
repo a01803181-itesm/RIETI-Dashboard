@@ -48,20 +48,20 @@
             <section id="fila-uno-reportes">
                 <div class="reportes-fila-uno" id="total-reportes">
                     <h1>Total de reportes</h1>
-                    <p>142</p>
+                    <p id="cantidad-total">0</p>
                     <p id="resumen-total-reportes"><span style="color: #10b981;">+8.2%</span> de la última semana</p>
                 </div>
                 <div class="reportes-fila-uno">
                     <h1 id="reportes-completados">Completados</h1>
-                    <p>98</p>
+                    <p id="cantidad-completados">0</p>
                 </div>
                 <div class="reportes-fila-uno">
                     <h1 id="reportes-proceso">En proceso</h1>
-                    <p>32</p>
+                    <p id="cantidad-en-proceso">0</p>
                 </div>
                 <div class="reportes-fila-uno">
                     <h1 id="reportes-pendientes">Pendientes</h1>
-                    <p>12</p>
+                    <p id="cantidad-pendientes" class="cantidad-pendientes">0</p>
                 </div>
             </section>
 
@@ -80,7 +80,7 @@
                     <h1>Acciones Rápidas</h1>
                     <div id="revisar-reportes-pendientes">
                         <p>Revisar reportes pendientes</p>
-                        <p class="cifra-pendiente">12</p>
+                        <p class="cifra-pendiente cantidad-pendientes">0</p>
                     </div>
                     <div id="botones-acciones-rapidas">
                         <input id="revisar-reportes-completados" type="button" value="Ver Completados">
@@ -115,7 +115,7 @@
                                     <td>RIETI2025100FE541</td>
                                     <td>ECATEPEC</td>
                                     <td>22/07/2026</td>
-                                    <td><span class="status status-completado">Completado</span></td>
+                                    <td><span class="status status-registrado">Registrado</span></td>
                                     <td>
                                         <div class="contenedor-boton-split">
                                             <button class="boton-ver">Ver</button>
@@ -146,7 +146,7 @@
                                     <td>RIETI2025100FE542</td>
                                     <td>JILOTZINGO</td>
                                     <td>22/07/2026</td>
-                                    <td><span class="status status-pendiente">Pendiente</span></td>
+                                    <td><span class="status status-en-revision">En revisión</span></td>
                                     <td>
                                         <div class="contenedor-boton-split">
                                             <button class="boton-ver">Ver</button>
@@ -177,7 +177,7 @@
                                     <td>RIETI2025100FE544</td>
                                     <td>ATIZAPÁN DE ZARAGOZA</td>
                                     <td>12/08/2026</td>
-                                    <td><span class="status status-progreso">En progreso</span></td>
+                                    <td><span class="status status-en-seguimiento">En seguimiento</span></td>
                                     <td>
                                         <div class="contenedor-boton-split">
                                             <button class="boton-ver">Ver</button>
@@ -208,7 +208,7 @@
                                     <td>RIETI2025100FE545</td>
                                     <td>ECATEPEC</td>
                                     <td>26/08/2026</td>
-                                    <td><span class="status status-completado">Completado</span></td>
+                                    <td><span class="status status-canalizado">Canalizado</span></td>
                                     <td>
                                         <div class="contenedor-boton-split">
                                             <button class="boton-ver">Ver</button>
@@ -252,7 +252,7 @@
                 <div class="modal-body">
                     <div class="info-estado-actual">
                         <span class="etiqueta-info">Estado actual:</span>
-                        <span class="badge-status status-pendiente">Pendiente</span>
+                        <span class="badge-status status-en-revision">En revisión</span>
                     </div>
 
                     <div class="campo-grupo">
@@ -310,7 +310,9 @@
 
         <script type="module" src="./js/graficas.mjs"></script>
         <script type="module" src="./js/prueba.mjs"></script>
+        <script type="module" src="./js/dashboard.mjs"></script>
+        <script type="module" src="./js/appDashboard.mjs"></script>
 
-        <script type="module" src="js/app.mjs"></script>
+        <script type="module" src="js/appGraficas.mjs"></script>
     </body>
 </html>

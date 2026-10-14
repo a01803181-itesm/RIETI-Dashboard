@@ -208,3 +208,17 @@ export async function obtenerPorcentajeReportesEnProceso() {
         throw error;
     }
 }
+
+export async function obtenerCantidadesDeReportes() {
+    try {
+        const response = await fetch(`${API_URL}/v1/reportes/por-estatus/cantidad`);
+        if(!response.ok) {
+            throw new Error(`Error al obtener la cantidad de reportes por estado: ${response.status}`);
+        }
+
+        return await response.json();
+    } catch(error) {
+        console.error('Error al obtener la cantidad de reportes por estado:', error);
+        throw error;
+    }
+}
