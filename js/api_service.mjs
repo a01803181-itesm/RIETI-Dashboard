@@ -222,3 +222,17 @@ export async function obtenerCantidadesDeReportes() {
         throw error;
     }
 }
+
+export async function obtenerReportesRangoHora() {
+    try{
+        const response = await fetch(`${API_URL}/v1/reportes/estadisticas/por-rango-hora`);
+        if(!response.ok){
+            throw new Error(`Erro al obtener los reportes por hora: ${response.status}`);  
+        }
+        return await response.json();
+    }catch(error){
+        console.error('Error al obtener la cantidad de reportes por estado: ', error);
+        throw error;
+    }
+    
+}

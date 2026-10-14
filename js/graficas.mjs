@@ -183,12 +183,16 @@ export function canvasReportesMunicipio(datos) {
 /**
  * Renderiza una gráfica estática de barras con la distribución de reportes según el rango horario.
  */
-const canvasReportesRangoHora = document.getElementById('grafica-reportes-rango-hora');
-if (canvasReportesRangoHora) {
+
+
+export function canvasReportesRangoHora(datos) {
+    const canvasReportesRangoHora = document.getElementById('grafica-reportes-rango-hora');
+    if (!canvasReportesRangoHora || !Array.isArray(datos)) return;
+
     const ctxReportesRangoHora = canvasReportesRangoHora.getContext('2d');
 
-    const labelResportesRangoHora = ['8:00 - 10:00', '10:00 - 12:00', '12:00 - 14:00', '14:00 - 16:00', '16:00 - 18:00', '18:00 - 20:00', '20:00 - 22:00']
-    const valoresReporteRangoHora = [10, 2, 6, 4, 12, 5, 7]
+    const labelResportesRangoHora = datos.map(item => item.categoria);
+    const valoresReporteRangoHora = datos.map(item => item.total)
 
     //Gráficas Reportes por Municipio
     new Chart(ctxReportesRangoHora, {
@@ -333,9 +337,9 @@ export function canvasCoordenadas(datos) {
 //     porcentaje.textContent = String(dato)
 // }
 
-export function datoPorcentajeEstadisticasPendientes({ data = 0} = {}) {
+export function datoPorcentajeEstadisticasPendientes({ data = 0 } = {}) {
     const elemento = document.getElementById('porcentaje-reportes-pendientes');
-    if(elemento) {
+    if (elemento) {
         elemento.textContent = `${Number(data).toFixed(1)}`;
     }
 }
@@ -346,9 +350,9 @@ export function datoPorcentajeEstadisticasPendientes({ data = 0} = {}) {
 //     porcentaje.textContent = String(dato)
 // }
 
-export function datoPorcentajeEstadisticasEnProceso({ data = 0} = {}) {
+export function datoPorcentajeEstadisticasEnProceso({ data = 0 } = {}) {
     const elemento = document.getElementById('porcentaje-reportes-en-proceso');
-    if(elemento) {
+    if (elemento) {
         elemento.textContent = `${Number(data).toFixed(1)}`;
     }
 }
@@ -359,9 +363,9 @@ export function datoPorcentajeEstadisticasEnProceso({ data = 0} = {}) {
 //     porcentaje.textContent = String(dato)
 // }
 
-export function datoPromedioResolucion({ data = 0} = {}) {
+export function datoPromedioResolucion({ data = 0 } = {}) {
     const elemento = document.getElementById('dias-promedio-resolucion');
-    if(elemento) {
+    if (elemento) {
         elemento.textContent = `${Number(data)}`;
     }
 }
@@ -372,9 +376,9 @@ export function datoPromedioResolucion({ data = 0} = {}) {
 //     porcentaje.textContent = String(dato)
 // }
 
-export function datoPendientesUltimaSemana({ data = 0} = {}) {
+export function datoPendientesUltimaSemana({ data = 0 } = {}) {
     const elemento = document.getElementById('pendientes-ultima-semana');
-    if(elemento) {
+    if (elemento) {
         elemento.textContent = `${Number(data)}`;
     }
 }
