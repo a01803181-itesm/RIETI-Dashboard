@@ -1118,3 +1118,8 @@ td {
     border: 1px solid #cbd5e1;
     border-radius: 8px;
 }
+.boton-ver {
+    width: auto !important;
+    padding: 6px 16px;
+    display: inline-block;
+}
