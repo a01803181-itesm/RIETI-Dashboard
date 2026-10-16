@@ -3,11 +3,14 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Estadísticas - Rieti</title>
+        <title>Estadísticas Procurador - Rieti</title>
         <link rel="stylesheet" href="./css/style.css">
 
         <!-- Carga de Chart.js -->
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+        <!-- CSS de Leaflet -->
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
     </head>
     <body id="indexBody">
         
@@ -66,7 +69,6 @@
             </section>
 
             <section class="filas-estadistica" id="fila-dos-estadisticas">
-                <!-- Se reemplazó la gráfica de 'Reportes por Municipio' por 'Reportes por Categoría' -->
                 <div class="contenedor-estadistica" id="reportes-por-categoria">
                     <header class="card-header">
                         <h1>Reportes por Categoría</h1>
@@ -120,7 +122,7 @@
                         </div>
                         <div class="estadisticas-metricas-rendimiento">
                             <h1>Pendientes</h1>
-                            <p style="color: rgb(122, 92, 18);">+<span id="pendientes-ultima-semana">0.0</span>%</p>
+                            <p style="color: rgb(122, 92, 18);"><span id="pendientes-ultima-semana">0</span></p>
                             <p style="color: rgb(163, 161, 161); font-size: 11px; font-weight: lighter;">de la última semana</p>
                         </div>
                     </div>
@@ -144,19 +146,16 @@
             </section>
         </main>
 
-        <script type="module" src="js/graficas.mjs"></script>
-        <script type="module" src="js/navegacion.mjs"></script>
-
-        <!-- CSS de Leaflet -->
-        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
-
-        <!-- JS de Leaflet -->
+        <!-- Scripts JS de Leaflet -->
         <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
         <!-- Plugin de Mapa de Calor (leaflet-heat) -->
         <script src="https://unpkg.com/leaflet.heat@0.2.0/dist/leaflet-heat.js"></script>
 
-        <script type="module" src="js/appGraficas.mjs"></script>
+        <!-- Scripts del módulo del Alimentador / Procurador Municipal -->
+        <script type="module" src="js/navegacion.mjs"></script>
+        <script type="module" src="js/graficasAlimentador.mjs"></script>
+        <script type="module" src="js/appGraficasAlimentador.mjs"></script>
 
     </body>
 </html>

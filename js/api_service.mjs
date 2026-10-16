@@ -236,3 +236,132 @@ export async function obtenerReportesRangoHora() {
     }
     
 }
+
+
+// 1. Obtener conteo de reportes por estatus para el municipio del alimentador
+export async function obtenerEstatusPorAlimentador(correoAlimentador) {
+  try {
+    const response = await fetch(
+      `${API_URL}/v1/reportes/estadisticas/estatus-por-alimentador/${encodeURIComponent(correoAlimentador)}`
+    );
+    if (!response.ok) {
+      throw new Error(`Error al obtener estatus por alimentador: ${response.status}`);
+    }
+    return await response.json();
+  } catch (error) {
+    console.error('Error al obtener estatus por alimentador:', error);
+    throw error;
+  }
+}
+
+// 2. Obtener estadísticas de reportes por mes para el municipio del alimentador
+export async function obtenerReportesPorTiempoPorAlimentador(correoAlimentador) {
+  try {
+    const response = await fetch(
+      `${API_URL}/v1/reportes/estadisticas/fecha-por-alimentador/${encodeURIComponent(correoAlimentador)}`
+    );
+    if (!response.ok) {
+      throw new Error(`Error al obtener los reportes por mes: ${response.status}`);
+    }
+    return await response.json();
+  } catch (error) {
+    console.error('Error al obtener los reportes por mes:', error);
+    throw error;
+  }
+}
+
+// 3. Obtener reporte de frecuencia por rango de hora para el municipio del alimentador
+export async function obtenerReportesRangoHoraPorAlimentador(correoAlimentador) {
+  try {
+    const response = await fetch(
+      `${API_URL}/v1/reportes/estadisticas/por-rango-hora-por-alimentador/${encodeURIComponent(correoAlimentador)}`
+    );
+    if (!response.ok) {
+      throw new Error(`Error al obtener los reportes por rango de hora: ${response.status}`);
+    }
+    return await response.json();
+  } catch (error) {
+    console.error('Error al obtener los reportes por rango de hora:', error);
+    throw error;
+  }
+}
+
+// 4. Obtener coordenadas del mapa de calor para el municipio del alimentador
+export async function obtenerCoordenadasMapaPorAlimentador(correoAlimentador) {
+  try {
+    const response = await fetch(
+      `${API_URL}/v1/reportes/mapa-calor/por-alimentador/${encodeURIComponent(correoAlimentador)}`
+    );
+    if (!response.ok) {
+      throw new Error(`Error al obtener coordenadas para el mapa: ${response.status}`);
+    }
+    return await response.json();
+  } catch (error) {
+    console.error('Error al obtener coordenadas para el mapa:', error);
+    throw error;
+  }
+}
+
+// 5. Obtener promedio de días de resolución para el municipio del alimentador
+export async function obtenerPromedioResolucionPorAlimentador(correoAlimentador) {
+  try {
+    const response = await fetch(
+      `${API_URL}/v1/reportes/estadisticas/promedio-resolucion/por-alimentador/${encodeURIComponent(correoAlimentador)}`
+    );
+    if (!response.ok) {
+      throw new Error(`Error al obtener el promedio de resolución: ${response.status}`);
+    }
+    return await response.json();
+  } catch (error) {
+    console.error('Error al obtener el promedio de resolución:', error);
+    throw error;
+  }
+}
+
+// 6. Obtener reportes pendientes creados en la última semana para el municipio del alimentador
+export async function obtenerPendientesUltimaSemanaPorAlimentador(correoAlimentador) {
+  try {
+    const response = await fetch(
+      `${API_URL}/v1/reportes/estadisticas/pendientes-ultima-semana/por-alimentador/${encodeURIComponent(correoAlimentador)}`
+    );
+    if (!response.ok) {
+      throw new Error(`Error al obtener reportes pendientes de la última semana: ${response.status}`);
+    }
+    return await response.json();
+  } catch (error) {
+    console.error('Error al obtener reportes pendientes de la última semana:', error);
+    throw error;
+  }
+}
+
+// 7. Obtener porcentaje de reportes en proceso de seguimiento para el municipio del alimentador
+export async function obtenerPorcentajeEnProcesoPorAlimentador(correoAlimentador) {
+  try {
+    const response = await fetch(
+      `${API_URL}/v1/reportes/en-proceso/por-alimentador/${encodeURIComponent(correoAlimentador)}`
+    );
+    if (!response.ok) {
+      throw new Error(`Error al obtener el porcentaje de reportes en proceso: ${response.status}`);
+    }
+    return await response.json();
+  } catch (error) {
+    console.error('Error al obtener el porcentaje de reportes en proceso:', error);
+    throw error;
+  }
+}
+
+// 8. Obtener porcentaje de reportes pendientes para el municipio del alimentador
+export async function obtenerPorcentajePendientesPorAlimentador(correoAlimentador) {
+  try {
+    const response = await fetch(
+      `${API_URL}/v1/reportes/pendientes/por-alimentador/${encodeURIComponent(correoAlimentador)}`
+    );
+    if (!response.ok) {
+      throw new Error(`Error al obtener el porcentaje de reportes pendientes: ${response.status}`);
+    }
+    return await response.json();
+  } catch (error) {
+    console.error('Error al obtener el porcentaje de reportes pendientes:', error);
+    throw error;
+  }
+}
