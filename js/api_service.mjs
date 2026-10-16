@@ -17,7 +17,7 @@ export async function obtenerReportesAtravesTiempo(){
     try{
         const response = await fetch(`${API_URL}/v1/reportes/estadisticas/fecha`);
         if(!response.ok){
-            throw new Error(`Erorr en la peticion: ${response.status}`);
+            throw new Error(`Error en la peticion: ${response.status}`);
 
         }
 
@@ -237,8 +237,6 @@ export async function obtenerReportesRangoHora() {
     
 }
 
-<<<<<<< Updated upstream
-
 // 1. Obtener conteo de reportes por estatus para el municipio del alimentador
 export async function obtenerEstatusPorAlimentador(correoAlimentador) {
   try {
@@ -366,7 +364,7 @@ export async function obtenerPorcentajePendientesPorAlimentador(correoAlimentado
     throw error;
   }
 }
-=======
+
 export async function obtenerDetallesReportes() {
     try{
         const response = await fetch(`${API_URL}/v1/reportes/detalles/estatus`);
@@ -379,4 +377,16 @@ export async function obtenerDetallesReportes() {
         throw error;
     }
 }
->>>>>>> Stashed changes
+
+export async function obtenerDetallesReportePorFolio(folio) {
+  try {
+    const response = await fetch(`${API_URL}/v1/reportes/${encodeURIComponent(folio)}`);
+    if(!response.ok) {
+      throw new Error(`Error al obtener los detalles del reporte con folio ${folio}: ${response.status}`);
+    }
+    return await response.json();
+  } catch (error) {
+    console.error(`Error al obtener los detalles del reporte ${folio}: `, error);
+    throw error;
+  }
+}

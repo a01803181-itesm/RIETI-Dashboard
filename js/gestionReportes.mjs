@@ -1,3 +1,7 @@
+import {
+    obtenerDetallesReportePorFolio
+} from './api_service.mjs';
+
 export function detallesReportesGestion(datos) {
     const tbody = document.getElementById('cuerpo-tabla');
 
@@ -99,10 +103,23 @@ buscador.addEventListener('keydown', function(event) {
 
 document.addEventListener('click', function(event) {
     const botonVer = event.target.closest('.boton-ver');
+    const padre = ((botonVer.parentElement).parentElement).parentElement;
+    const hijo = padre.children[0];
+    const folio = hijo.textContent;
 
     if(botonVer) {
-        const folio = botonVer.getAttribute('data-folio');
-
         console.log('Ver detalles del folio:', folio);
+        console.log('El elemento padre es: ', padre);
+        console.log('El elemento hijo es: ', hijo);
+
+        const paginaDetalles = window.open('detalles_reporte');
+
+        try {
+            const response = await fetch(`${API_URL}/v1/reportes/${encodeURIComponent(folio)}`);
+
+            if (!response.ok) {
+                throw new Error
+            }
+        }
     }
 })
