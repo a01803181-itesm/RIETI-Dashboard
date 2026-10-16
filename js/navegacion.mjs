@@ -19,6 +19,7 @@ const botonVerReporteIndividual = document.querySelectorAll('.boton-ver');
 if(botonVerReporteIndividual){
     botonVerReporteIndividual.forEach(boton => {
         boton.addEventListener('click', function() {
+            alert('Botón presionado');
             window.location.href = 'detalles_reporte.html';
         });
     });

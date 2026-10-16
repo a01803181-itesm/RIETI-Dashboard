@@ -1,23 +1,29 @@
 import {
-    obtenerCantidadesDeReportes
+    obtenerCantidadesDeReportes,
+    obtenerDetallesReportes
 } from './api_service.mjs';
 
 import {
-    datosCantidadDeReportes
+    datosCantidadDeReportes,
+    detallesReportes
 } from './dashboard.mjs';
 
 async function inicializarDatos() {
     try {
         const [
-            cantidadReportes
+            cantidadReportes,
+            reportes
         ] = await Promise.all([
-            obtenerCantidadesDeReportes()
+            obtenerCantidadesDeReportes(),
+            obtenerDetallesReportes()
         ]);
         console.log('Cantidad de reportes:', cantidadReportes);
+        console.log('Reportes: ', reportes);
 
         datosCantidadDeReportes(cantidadReportes);
+        detallesReportes(reportes);
     } catch (error) {
-        console.error('No se pudieron cargar las cantidades de reportes por estado:', error);
+        console.error('No se pudieron cargar los datos:', error);
     }
 }
 
