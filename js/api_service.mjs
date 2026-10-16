@@ -227,7 +227,7 @@ export async function obtenerReportesRangoHora() {
     try{
         const response = await fetch(`${API_URL}/v1/reportes/estadisticas/por-rango-hora`);
         if(!response.ok){
-            throw new Error(`Erro al obtener los reportes por hora: ${response.status}`);  
+            throw new Error(`Error al obtener los reportes por hora: ${response.status}`);  
         }
         return await response.json();
     }catch(error){
@@ -237,6 +237,7 @@ export async function obtenerReportesRangoHora() {
     
 }
 
+<<<<<<< Updated upstream
 
 // 1. Obtener conteo de reportes por estatus para el municipio del alimentador
 export async function obtenerEstatusPorAlimentador(correoAlimentador) {
@@ -365,3 +366,17 @@ export async function obtenerPorcentajePendientesPorAlimentador(correoAlimentado
     throw error;
   }
 }
+=======
+export async function obtenerDetallesReportes() {
+    try{
+        const response = await fetch(`${API_URL}/v1/reportes/detalles/estatus`);
+        if(!response.ok){
+            throw new Error(`Error al obtener los detalles de los reportes con estatus: ${response.status}`);
+        }
+        return await response.json();
+    }catch(error){
+        console.error('Error al obtener los detalles de los reportes: ', error);
+        throw error;
+    }
+}
+>>>>>>> Stashed changes
