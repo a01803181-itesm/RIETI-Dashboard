@@ -101,7 +101,7 @@ buscador.addEventListener('keydown', function(event) {
 });
 
 
-document.addEventListener('click', function(event) {
+document.addEventListener('click', async function(event) {
     const botonVer = event.target.closest('.boton-ver');
     const padre = ((botonVer.parentElement).parentElement).parentElement;
     const hijo = padre.children[0];
@@ -115,11 +115,21 @@ document.addEventListener('click', function(event) {
         const paginaDetalles = window.open('detalles_reporte');
 
         try {
-            const response = await fetch(`${API_URL}/v1/reportes/${encodeURIComponent(folio)}`);
+            const response = await fetch(`${API_URL}/v1/reportes//detalles/estatus/${encodeURIComponent(folio)}`);
 
             if (!response.ok) {
-                throw new Error
+                throw new Error(`Error en la petición: ${response.status}`);
             }
+
+            const detalleReporte = await response.json();
+
+            sessionStorage.setItem('reporteSeleccionado', JSON.stringify(detalleReporte));
+
+            paginaDetalles.location.href = `/detalles_reporte.html?folio=${encodeURIComponent(folio)}`;
+        } catch (error) {
+            console.error('Error al obtener los detslles del reporte:', error);
+
+            if(paginaDetalles) paginaDetalles.close();
         }
     }
 })
