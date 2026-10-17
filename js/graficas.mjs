@@ -382,3 +382,59 @@ export function datoPendientesUltimaSemana({ data = 0 } = {}) {
         elemento.textContent = `${Number(data)}`;
     }
 }
+
+// ----------------------------------------- GRÁFICA REPORTES POR TIPO DE TRABAJO -----------------------------------------
+
+/**
+ * Renderiza una gráfica de barras verticales con la distribución de reportes por tipo de trabajo.
+ * 
+ * @function canvasReportesTipoTrabajo
+ * @param {Array<Object>} datos Lista de objetos { categoria: string, total: number }
+ */
+
+
+export function canvaReportesTipoTrabajo(datos) {
+    // Busca la ID definida en tu HTML de estadísticas generales
+    const canvas = document.getElementById('grafica-tipo-trabajo') || document.getElementById('grafica-reportes-por-categoria');
+    if (!canvas || !Array.isArray(datos)) return;
+
+    const chartExistente = Chart.getChart(canvas);
+    if (chartExistente) {
+        chartExistente.destroy();
+    }
+
+    const ctx = canvas.getContext('2d');
+
+    const labels = datos.map(item => item.categoria.replace(/_/g, ' '));
+    const valores = datos.map(item => item.total);
+
+    new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: labels,
+            datasets: [{
+                label: 'Reportes por Tipo de Trabajo',
+                data: valores,
+                borderColor: '#c77802',
+                backgroundColor: 'rgba(199, 107, 2, 0.4)',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: { position: 'top' },
+                title: {
+                    display: true,
+                    text: 'Distribución por Tipo de Trabajo'
+                }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    ticks: { stepSize: 1 }
+                }
+            }
+        }
+    });
+}

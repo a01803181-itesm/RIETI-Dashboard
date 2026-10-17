@@ -24,7 +24,7 @@ import {
   datoPorcentajeEstadisticasEnProceso,
   datoPorcentajeEstadisticasPendientes,
   canvasReportesRangoHora,
-  canvaReporteTipoTrabajo
+  canvaReportesTipoTrabajo
 } from './graficas.mjs';
 
 /**
@@ -72,7 +72,7 @@ async function inicializarDashboard() {
     canvasReportesAutoridad(reportesAutoridad);
     canvasCoordenadas(reportesCoordenadas);
     canvasReportesRangoHora(reportesHora);
-    canvasReporteTipoTrabajo(reportesTrabajo);
+    canvaReportesTipoTrabajo(reportesTrabajo);
     
   }catch(error) {
     console.error('No se pudieron cargar las estadísticas:', error);

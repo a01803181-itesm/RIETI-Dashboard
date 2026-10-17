@@ -391,6 +391,7 @@ export async function obtenerDetallesReportePorFolio(folio) {
   }
 }
 
+
 // 9. Obtener estadísticas de reportes por tipo de trabajo (Global)
 export async function obtenerReportesPorTipoTrabajo() {
   try {
