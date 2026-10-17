@@ -9,7 +9,8 @@ import {
   obtenerReportesPendientesUltimaSemana,
   obtenerPorcentajeReportesEnProceso,
   obtenerPorcentajeReportesPendientes,
-  obtenerReportesRangoHora
+  obtenerReportesRangoHora,
+  obtenerReportesPorTipoTrabajo
 
 } from './api_service.mjs';
 import {
@@ -22,7 +23,8 @@ import {
   datoPendientesUltimaSemana,
   datoPorcentajeEstadisticasEnProceso,
   datoPorcentajeEstadisticasPendientes,
-  canvasReportesRangoHora
+  canvasReportesRangoHora,
+  canvaReporteTipoTrabajo
 } from './graficas.mjs';
 
 /**
@@ -43,14 +45,16 @@ async function inicializarDashboard() {
       reportesMunicipio,
       reportesAutoridad,
       reportesCoordenadas,
-      reportesHora
+      reportesHora,
+      reportesTrabajo
     ] = await Promise.all([
       obtenerReportesPorEstatus(),
       obtenerReportesAtravesTiempo(),
       obtenerReportesPorMunicipio(),
       obtenerReportesPorAutoridad(),
       obtenerCoordenadas(),
-      obtenerReportesRangoHora()
+      obtenerReportesRangoHora(),
+      obtenerReportesPorTipoTrabajo()
     ]);
     console.log('Reportes por estatus:', reportesPorEstatus);
     console.log('Reportes a través del tiempo:', reportesTiempo);
@@ -58,6 +62,7 @@ async function inicializarDashboard() {
     console.log('Reportes por autoridad', reportesAutoridad);
     console.log('Reportes coordenadas (mapa de calor)', reportesCoordenadas);
     console.log('Reportes por rango de hora', reportesHora);
+    console.log('Reportes por tipo de trabajo', reportesTrabajo);
 
 
     //Renderizar las graficas 
@@ -67,6 +72,7 @@ async function inicializarDashboard() {
     canvasReportesAutoridad(reportesAutoridad);
     canvasCoordenadas(reportesCoordenadas);
     canvasReportesRangoHora(reportesHora);
+    canvasReporteTipoTrabajo(reportesTrabajo);
     
   }catch(error) {
     console.error('No se pudieron cargar las estadísticas:', error);

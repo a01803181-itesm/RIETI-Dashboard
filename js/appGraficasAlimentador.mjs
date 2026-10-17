@@ -7,7 +7,9 @@ import {
   obtenerPromedioResolucionPorAlimentador,
   obtenerPendientesUltimaSemanaPorAlimentador,
   obtenerPorcentajeEnProcesoPorAlimentador,
-  obtenerPorcentajePendientesPorAlimentador
+  obtenerPorcentajePendientesPorAlimentador,
+  obtenerReportesPorTipoTrabajoPorAlimentador,
+  obtenerReportesPorAutoridadPorAlimentador
 } from './api_service.mjs';
 
 import {
@@ -18,10 +20,12 @@ import {
   datoPendientesUltimaSemana,
   datoPorcentajeEstadisticasEnProceso,
   datoPorcentajeEstadisticasPendientes,
-  canvasReportesRangoHora
-} from './graficas.mjs';
+  canvasReportesRangoHora,
+  canvasReportesTipoTrabajo,
+  canvasReportesPorAutoridad
+} from './graficasAlimentador.mjs';
 
-// Obtener el correo del alimentador autenticado (Ajusta la clave según tu gestión de sesión)
+// Obtener el correo del alimentador autenticado
 const correoAlimentador = localStorage.getItem('correoAlimentador') || 'alim3@rieti.mx';
 
 /**
@@ -37,24 +41,32 @@ async function inicializarDashboardAlimentador() {
       reportesPorEstatus,
       reportesTiempo,
       reportesCoordenadas,
-      reportesHora
+      reportesHora,
+      reportesTipoTrabajo,
+      reportesAutoridad
     ] = await Promise.all([
       obtenerEstatusPorAlimentador(correoAlimentador),
       obtenerReportesPorTiempoPorAlimentador(correoAlimentador),
       obtenerCoordenadasMapaPorAlimentador(correoAlimentador),
-      obtenerReportesRangoHoraPorAlimentador(correoAlimentador)
+      obtenerReportesRangoHoraPorAlimentador(correoAlimentador),
+      obtenerReportesPorTipoTrabajoPorAlimentador(correoAlimentador),
+      obtenerReportesPorAutoridadPorAlimentador(correoAlimentador)
     ]);
 
     console.log('Reportes por estatus (Alimentador):', reportesPorEstatus);
     console.log('Reportes a través del tiempo (Alimentador):', reportesTiempo);
     console.log('Reportes coordenadas (Alimentador):', reportesCoordenadas);
     console.log('Reportes por rango de hora (Alimentador):', reportesHora);
+    console.log('Reportes por tipo de trabajo (Alimentador):', reportesTipoTrabajo);
+    console.log('Reportes por autoridad (Alimentador):', reportesAutoridad);
 
-    // Renderizar las gráficas reutilizando tus funciones canvas
+    // Renderizar las gráficas
     canvasEstadoReportes(reportesPorEstatus);
     canvasReportesTiempo(reportesTiempo);
     canvasCoordenadas(reportesCoordenadas);
     canvasReportesRangoHora(reportesHora);
+    canvasReportesTipoTrabajo(reportesTipoTrabajo);
+    canvasReportesPorAutoridad(reportesAutoridad);
     
   } catch (error) {
     console.error('No se pudieron cargar las gráficas del alimentador:', error);

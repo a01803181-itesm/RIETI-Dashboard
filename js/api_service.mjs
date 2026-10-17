@@ -390,3 +390,49 @@ export async function obtenerDetallesReportePorFolio(folio) {
     throw error;
   }
 }
+
+// 9. Obtener estadísticas de reportes por tipo de trabajo (Global)
+export async function obtenerReportesPorTipoTrabajo() {
+  try {
+    const response = await fetch(`${API_URL}/v1/reportes/estadisticas/tipo-trabajo`);
+    if (!response.ok) {
+      throw new Error(`Error al obtener los reportes por tipo de trabajo: ${response.status}`);
+    }
+    return await response.json();
+  } catch (error) {
+    console.error('Error al obtener los reportes por tipo de trabajo:', error);
+    throw error;
+  }
+}
+
+// 10. Obtener estadísticas de reportes por tipo de trabajo para el municipio del alimentador
+export async function obtenerReportesPorTipoTrabajoPorAlimentador(correoAlimentador) {
+  try {
+    const response = await fetch(
+      `${API_URL}/v1/reportes/estadisticas/tipo-trabajo-por-alimentador/${encodeURIComponent(correoAlimentador)}`
+    );
+    if (!response.ok) {
+      throw new Error(`Error al obtener reportes por tipo de trabajo por alimentador: ${response.status}`);
+    }
+    return await response.json();
+  } catch (error) {
+    console.error('Error al obtener reportes por tipo de trabajo por alimentador:', error);
+    throw error;
+  }
+}
+
+// 11. Obtener reportes por autoridad/alimentador del municipio del alimentador
+export async function obtenerReportesPorAutoridadPorAlimentador(correoAlimentador) {
+  try {
+    const response = await fetch(
+      `${API_URL}/v1/reportes/estadisticas/por-autoridad-por-alimentador/${encodeURIComponent(correoAlimentador)}`
+    );
+    if (!response.ok) {
+      throw new Error(`Error al obtener reportes por autoridad por alimentador: ${response.status}`);
+    }
+    return await response.json();
+  } catch (error) {
+    console.error('Error al obtener reportes por autoridad por alimentador:', error);
+    throw error;
+  }
+}
