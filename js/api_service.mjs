@@ -392,6 +392,7 @@ export async function obtenerDetallesReportePorFolio(folio) {
 }
 
 
+<<<<<<< Updated upstream
 // 9. Obtener estadísticas de reportes por tipo de trabajo (Global)
 export async function obtenerReportesPorTipoTrabajo() {
   try {
@@ -437,3 +438,17 @@ export async function obtenerReportesPorAutoridadPorAlimentador(correoAlimentado
     throw error;
   }
 }
+=======
+export async function obtenerDetallesReportePorFolioConEstatus(folio) {
+  try {
+    const response = await fetch(`${API_URL}/v1/reportes/detalles/estatus/${encodeURIComponent(folio)}`);
+    if(!response.ok) {
+      throw new Error(`Error al obtener los detalles del reporte con folio ${folio}: ${response.status}`);
+    }
+    return await response.json();
+  } catch (error) {
+    console.error(`Error al obtener los detalles del reporte ${folio}: `, error);
+    throw error;
+  }
+}
+>>>>>>> Stashed changes
