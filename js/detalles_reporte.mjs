@@ -31,6 +31,7 @@ document.addEventListener('DOMContentLoaded', async function() {
         const reporte = await response.json();
 
         mostrarDetalles(reporte);
+        MostrarEvidencia(reporte.folio);
 
     } catch(error) {
         console.error('Error al obtener los detalles del reporte:', error);
@@ -103,4 +104,51 @@ function mostrarDetalles(reporte) {
 
     // ------------------------------------------ HISTORIAL ------------------------------------------
     // const historial = 
+}
+
+async function MostrarEvidencia (folio) {
+    const contenedor = document.getElementById("evidencia-reporte");
+    
+    contenedor.style.display = "flex";
+    contenedor.style.flexDirection = "column";
+    contenedor.style.alignItems = "center";
+
+    if(!contenedor) return
+    
+    contenedor.replaceChildren();
+    contenedor.textContent = "Cargando fotografía/s...";
+
+    try{
+       const response = await fetch(
+        `${API_URL}/v1/evidencias/by-folio/${encodeURIComponent(folio)}`
+       );
+       
+       if(!response.ok){
+            throw new Error (`Error HTTP: ${response.status}`);
+       }
+
+       const evidencias = await response.json();
+
+       contenedor.replaceChildren();
+
+       if(evidencias.length === 0){
+        contenedor.textContent = "Este reporte no tiene evidencias.";
+        return;
+       }
+
+       evidencias.forEach (evidencia => {
+        const imagen = document.createElement("img");
+
+        imagen.src = evidencia.url;
+        imagen.alt = "Evidencia de fotos del reporte";
+
+
+        contenedor.appendChild(imagen);
+       });
+
+    } catch (error){
+        console.error ("Error al cargar fotos: ", error);
+        contenedor.textContent = "No se pudo cargar las fotos.";
+    }
+    
 }
