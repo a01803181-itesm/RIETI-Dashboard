@@ -10,6 +10,10 @@
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     </head>
     <body id="indexBody">
+
+        <div id="pantalla-carga">
+            <div class="spinner"></div>
+        </div>
         
         <!-- Menú Lateral Sidebar -->
         <aside id="menu">
@@ -43,7 +47,7 @@
             <section id="seccion-uno-detalles">
                 <div id="columna-uno-detalles">
                     <div class="detalles-columna-uno" id="estado-detalles">
-                        <p id="estatus-reporte">En proceso</p>
+                        <p id="estatus-reporte" class="status status-sin-asignar">Sin asignar</p>
                     </div>
 
                     <div class="detalles-columna-uno">
@@ -53,7 +57,7 @@
                             <h2>Nombre Completo</h2>
                             <div id="persona">
                                 <img src="./imagenes/detalles_reporte/persona.png" alt="icono-correo" height="10px">
-                                <p id="nombre-usuario">Renata Rojas</p>
+                                <p id="nombre-usuario"></p>
                             </div>
                         </div>
                         
@@ -61,7 +65,7 @@
                             <h2>Correo Electrónico</h2>
                             <div id="correo">
                                 <img src="./imagenes/detalles_reporte/correo.png" alt="icono-persona" height="10px">
-                                <p id="correo-usuario">rieti@correo.com</p>
+                                <p id="correo-usuario"></p>
                             </div>
                         </div>
                     </div>
@@ -77,7 +81,7 @@
                 <div id="columna-dos-detalles">
                     <div class="detalles-columna-dos" id="historial-detalles">
                         <h1>Historial</h1>
-                        <ul>
+                        <ul id="historial-cambios">
                             <li>
                                 <div class="punto-historial">
                                     <p class="detalle-historial">Renata Rojas envió reporte</p>
@@ -142,8 +146,12 @@
         </main>
 
         <script type="module" src="./js/graficas.mjs"></script>
-        <script type="module" src="./js/mapa.mjs"></script>
+        <!-- <script type="module" src="./js/mapa.mjs"></script> -->
         <script type="module" src="./js/navegacion.mjs"></script>
+
+        <script type="module" src="./js/detalles_reporte.mjs"></script>
+        <script type="module" src="./js/appGestionReportes.mjs"></script>
+        <script type="module" src="./js/gestionReportes.mjs"></script>
 
         <!-- CSS de Leaflet -->
         <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">

@@ -1,8 +1,15 @@
 import {
-    obtenerDetallesReportePorFolio
-} from './api_service.mjs';
+    API_URL
+} from './api_url.mjs';
+
+
+export function modificarDetallesModal(estado) {
+    const estadoModal = document.getElementById('estado-actual-modal');
+    estadoModal.textContent = estado;
+}
 
 export function detallesReportesGestion(datos) {
+    // DATOS TABLA
     const tbody = document.getElementById('cuerpo-tabla');
 
     const filasHTML = datos.map(item => {
@@ -48,6 +55,8 @@ export function detallesReportesGestion(datos) {
         </td>
         `;
 
+        modificarDetallesModal(estatus);
+
         return `
         <tr>
             <td>${folio}</td>
@@ -62,7 +71,7 @@ export function detallesReportesGestion(datos) {
     tbody.innerHTML = filasHTML;
 }
 
-// ------------------------------------------------------------------------
+// -------------------------------- BUSCADOR --------------------------------
 const botonBuscar = document.getElementById('botonBuscar');
 const buscador = document.getElementById('buscador');
 
@@ -81,6 +90,8 @@ botonBuscar.addEventListener('click', function() {
     })
 });
 
+
+// -------------------------------- LIMPIAR BUSCADOR --------------------------------
 buscador.addEventListener('input', function() {
     const valor = this.value.trim().toLowerCase();
     const rows = document.querySelectorAll('#cuerpo-tabla tr');
@@ -93,6 +104,7 @@ buscador.addEventListener('input', function() {
 });
 
 
+// -------------------------------- FUNCIONAMIENTO DE BUSCADOR CON ENTER --------------------------------
 buscador.addEventListener('keydown', function(event) {
     if (event.key === 'Enter') {
         event.preventDefault();
@@ -101,9 +113,11 @@ buscador.addEventListener('keydown', function(event) {
 });
 
 
+// -------------------------------- BOTON VER --------------------------------
 document.addEventListener('click', async function(event) {
     const botonVer = event.target.closest('.boton-ver');
-    const padre = ((botonVer.parentElement).parentElement).parentElement;
+    // const padre = ((botonVer.parentElement).parentElement).parentElement;
+    const padre = botonVer.closest('tr');
     const hijo = padre.children[0];
     const folio = hijo.textContent;
 
@@ -112,24 +126,10 @@ document.addEventListener('click', async function(event) {
         console.log('El elemento padre es: ', padre);
         console.log('El elemento hijo es: ', hijo);
 
-        const paginaDetalles = window.open('detalles_reporte');
 
-        try {
-            const response = await fetch(`${API_URL}/v1/reportes//detalles/estatus/${encodeURIComponent(folio)}`);
-
-            if (!response.ok) {
-                throw new Error(`Error en la petición: ${response.status}`);
-            }
-
-            const detalleReporte = await response.json();
-
-            sessionStorage.setItem('reporteSeleccionado', JSON.stringify(detalleReporte));
-
-            paginaDetalles.location.href = `/detalles_reporte.html?folio=${encodeURIComponent(folio)}`;
-        } catch (error) {
-            console.error('Error al obtener los detslles del reporte:', error);
-
-            if(paginaDetalles) paginaDetalles.close();
-        }
+        window.open(`detalles_reporte.html?folio=?${encodeURIComponent(folio)}`, '_blank');
     }
 })
+
+
+// -------------------------------- BOTON CAMBIAR ESTADO --------------------------------

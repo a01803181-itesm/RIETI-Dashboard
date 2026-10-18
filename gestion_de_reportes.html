@@ -459,7 +459,7 @@
                                                     <i class="fa-solid fa-chevron-down"></i>
                                                 </button>
                                                 <div class="contenido-dropdown">
-                                                    <button type="button" class="opciones-contenido boton-asignar-estado">
+                                                    <button type="button" id="boton-asignar-estado" class="opciones-contenido boton-asignar-estado">
                                                         <i class="fa-solid fa-user-shield"></i>
                                                         Asignar Estado
                                                     </button>
@@ -556,16 +556,20 @@
                 <div class="modal-body">
                     <div class="info-estado-actual">
                         <span class="etiqueta-info">Estado actual:</span>
-                        <span class="badge-status status-pendiente">Pendiente</span>
+                        <span id="estado-actual-modal" class="badge-status status-pendiente">Pendiente</span>
                     </div>
 
                     <div class="campo-grupo">
                         <label for="nuevoEstado">Cambiar estado a:</label>
                         <div class="select-wrapper">
                             <select id="nuevoEstado" class="input-select">
-                                <option value="pendiente">Pendiente</option>
-                                <option value="en-proceso">En proceso</option>
-                                <option value="completado">Completado</option>
+                                <option value="2_En_revision">En revisión</option>
+                                <option value="3_En_seguimiento">En seguimiento</option>
+                                <option value="4_Canalizado">Canalizado</option>
+                                <option value="5_Concluido">Concluido</option>
+                                <option value="6_Archivado">Archivado</option>
+                                <option value="7_Cancelado">Cancelado</option>
+                                <option value="8_Reincidente">Reincidente</option>
                             </select>
                         </div>
                     </div>
@@ -587,6 +591,10 @@
                 </div>
 
                 <div class="modal-body">
+                    <div class="info-estado-actual">
+                        <span class="etiqueta-info">Autoridad asignada:</span>
+                        <span id="autoridad-actual-modal">Ninguna</span>
+                    </div>
                     <div class="campo-grupo">
                         <label for="nuevaAutoridad">Asignar autoridad:</label>
                         <div class="select-wrapper">
@@ -614,7 +622,8 @@
 
         <script type="module" src="./js/graficas.mjs"></script>
         <script type="module" src="./js/navegacion.mjs"></script>
-        <script type="module" src="./js/prueba.mjs"></script>
+        <!-- <script type="module" src="./js/prueba.mjs"></script> -->
+        <script type="module" src="./js/modales.mjs"></script>
 
         <script type="module" src="./js/appGestionReportes.mjs"></script>
         <script type="module" src="./js/gestionReportes.mjs"></script>
