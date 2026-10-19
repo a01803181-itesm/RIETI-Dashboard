@@ -132,4 +132,48 @@ document.addEventListener('click', async function(event) {
 })
 
 
-// -------------------------------- BOTON CAMBIAR ESTADO --------------------------------
+// document.addEventListener('DOMContentLoaded', async () => {
+//     // 1. Primero cargamos los reportes desde la API a la tabla
+//     await cargarYRenderizarTabla();
+
+//     // 2. UNA VEZ QUE LA TABLA YA TIENE FILAS, aplicamos el filtro de la URL
+//     aplicarFiltroDesdeURL();
+// });
+
+// // Función para leer la URL y aplicar el filtro
+// function aplicarFiltroDesdeURL() {
+//     const urlParams = new URLSearchParams(window.location.search);
+//     const filtro = urlParams.get('filtro'); // Recupera 'pendiente', 'completado', etc.
+
+//     if (!filtro) return; // Si no hay parámetro en la URL, no hace nada
+
+//     console.log(`Aplicando filtro recibido por URL: ${filtro}`);
+
+//     const filas = document.querySelectorAll('#cuerpo-tabla tr');
+
+//     filas.forEach(fila => {
+//         // La celda de estado está en el índice 3 (4ta columna)
+//         const estadoCelda = fila.children[3]?.textContent.trim().toLowerCase();
+
+//         if (estadoCelda) {
+//             let mostrar = false;
+
+//             if (filtro === 'pendiente') {
+//                 // Mapeo para los nuevos estados de pendientes
+//                 mostrar = estadoCelda.includes('registrado') || 
+//                           estadoCelda.includes('revision') || 
+//                           estadoCelda.includes('pendiente');
+//             } else if (filtro === 'completado') {
+//                 mostrar = estadoCelda.includes('concluido') || 
+//                           estadoCelda.includes('canalizado') || 
+//                           estadoCelda.includes('completado');
+//             } else if (filtro === 'en progreso' || filtro === 'en proceso') {
+//                 mostrar = estadoCelda.includes('seguimiento') || 
+//                           estadoCelda.includes('proceso');
+//             }
+
+//             // Ocultar o mostrar la fila
+//             fila.style.display = mostrar ? '' : 'none';
+//         }
+//     });
+// }

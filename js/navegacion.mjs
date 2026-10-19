@@ -54,52 +54,19 @@ if(botonRevisarReportesProgreso) {
     });
 }
 
-/**
- * Escucha el evento de carga del DOM para verificar si existen parámetros de URL 
- * y aplicar automáticamente el filtro correspondiente en la tabla al cargar la página.
- */
-document.addEventListener('DOMContentLoaded', () => {
-    const urlParams = new URLSearchParams(window.location.search);
-    const filtroURL = urlParams.get('filtro');
+// /**
+//  * Escucha el evento de carga del DOM para verificar si existen parámetros de URL 
+//  * y aplicar automáticamente el filtro correspondiente en la tabla al cargar la página.
+//  */
+// document.addEventListener('DOMContentLoaded', () => {
+//     // const urlParams = new URLSearchParams(window.location.search);
+//     // const filtroURL = urlParams.get('filtro');
 
-    if(filtroURL === 'pendiente') {
-        filtrarReportes('pendiente');
-    }
-
-    if(filtroURL === 'completado') {
-        filtrarReportes('completado');
-    }
-
-    if(filtroURL === 'en progreso') {
-        filtrarReportes('en progreso');
-    }
-});
-
-/**
- * Filtra las filas de una tabla HTML basándose en el estado de los reportes.
- * Oculta las filas que no coincidan con el estado especificado y muestra las que sí.
- * 
- * @function filtrarReportes
- * @param {string} estadoFiltro - El estado por el cual se desea filtrar (ej. 'pendiente', 'completado', 'en progreso').
- * @returns {void}
- */
-function filtrarReportes(estadoFiltro) {
-    const filas = document.querySelectorAll('table tbody tr');
-
-    filas.forEach(fila => {
-        const estadoCelda = fila.cells[3];
-
-        if(estadoCelda) {
-            const estado = estadoCelda.textContent.trim().toLowerCase();
-
-            if(estado.includes(estadoFiltro.toLowerCase())) {
-                fila.computedStyleMap.display = '';
-            } else {
-                fila.style.display = 'none'
-            }
-        }
-    });
-}
+//     // if (filtroURL) {
+//     //     // filtrarReportes(filtroURL.toLocaleLowerCase());
+//     //     cargarReportesConFiltro();
+//     // }
+// });
 
 async function mostrarNombre() {
     const elementoNombre = document.getElementById("nombre-usuario");
