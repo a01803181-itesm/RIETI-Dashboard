@@ -1,4 +1,5 @@
 import { API_URL } from "./api_url.mjs";
+import { agregarPuntoHistorial } from "./detalles_reporte.mjs";
 
 let filaSeleccionada = null;
 let folioSeleccionado = null;
@@ -27,28 +28,26 @@ document.addEventListener('click', function(event) {
 });
 
 
-document.getElementById('guardarEstado').addEventListener('click', async function() {
+
+document.getElementById('guardarEstado').addEventListener('click', async function () {
     const selectNuevoEstado = document.getElementById('nuevoEstado');
     const nuevoEstado = selectNuevoEstado.value;
-    console.log(nuevoEstado);
-    
+
     if (!folioSeleccionado) {
         console.error("No se encontró el folio asociado a este reporte.");
-        alert("Error: No se indentificó el folio.");
+        alert("Error: No se identificó el folio.");
         return;
     }
 
-    console.log(`Enviando petición PATCH para folio: ${folioSeleccionado} con estatus: ${nuevoEstado}`);
-
-    const estado = filaSeleccionada.querySelector('.status');
-
-try {
-    const token = sessionStorage.getItem('access_token');
+    // Recuperamos el token de autenticación (prioriza sessionStorage o localStorage)
+    const token = sessionStorage.getItem('access_token') || localStorage.getItem('access_token');
 
     if (!token) {
-        throw new Error('No hay una sesión activa de Cognito.');
+        alert('No hay una sesión activa de Cognito.');
+        return;
     }
 
+<<<<<<< Updated upstream
     const response = await fetch(
         `${API_URL}/v1/reportes/${encodeURIComponent(folioSeleccionado)}/estatus`,
         {
@@ -82,7 +81,58 @@ try {
     alert('Ocurrió un error al guardar el cambio en el servidor.');
 }
 
+=======
+    try {
+        const response = await fetch(
+            `${API_URL}/v1/reportes/${encodeURIComponent(folioSeleccionado)}/estatus`,
+            {
+                method: 'PATCH',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`
+                },
+                body: JSON.stringify({ estatus: nuevoEstado })
+            }
+        );
+
+        if (!response.ok) {
+            const detalle = await response.text();
+            throw new Error(`HTTP ${response.status}: ${detalle}`);
+        }
+
+        const estatusLimpio = nuevoEstado.split('_').slice(1).join(' ');
+        const codigoCSS = nuevoEstado.split('_').slice(1).join('-').toLowerCase();
+
+        // 1. Si la modal se abrió desde la tabla, actualizamos el badge de la fila
+        if (typeof filaSeleccionada !== 'undefined' && filaSeleccionada) {
+            const estadoBadge = filaSeleccionada.querySelector('.status');
+            if (estadoBadge) {
+                estadoBadge.textContent = estatusLimpio;
+                estadoBadge.className = `status status-${codigoCSS}`;
+            }
+        }
+
+        // 2. Si el badge principal de la vista de detalles existe, lo actualizamos
+        const statusSpanDetalle = document.getElementById('estatus-reporte');
+        if (statusSpanDetalle) {
+            statusSpanDetalle.textContent = estatusLimpio;
+            statusSpanDetalle.className = `status status-${codigoCSS}`;
+        }
+
+        // 3. Agregar el nuevo evento al historial dinámicamente si el <ul> está presente
+        agregarPuntoHistorial(`El estado cambió a: ${estatusLimpio}`, null, 'cambio_estatus');
+
+        // 4. Cerrar el modal
+        document.getElementById('modal-estado').style.display = 'none';
+        console.log(`Estado del folio ${folioSeleccionado} actualizado a ${nuevoEstado}`);
+
+    } catch (error) {
+        console.error('Error al guardar el cambio de estado:', error);
+        alert('Ocurrió un error al guardar el cambio en el servidor.');
+    }
+>>>>>>> Stashed changes
 });
+
 
 document.getElementById('cerrar-estado').addEventListener('click', function() {
     document.getElementById('modal-estado').style.display = 'none';
