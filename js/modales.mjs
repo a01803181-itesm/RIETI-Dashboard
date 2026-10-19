@@ -42,6 +42,30 @@ document.getElementById('guardarEstado').addEventListener('click', async functio
 
     const estado = filaSeleccionada.querySelector('.status');
 
+try {
+    const token = sessionStorage.getItem('access_token');
+
+    if (!token) {
+        throw new Error('No hay una sesión activa de Cognito.');
+    }
+
+    const response = await fetch(
+        `${API_URL}/v1/reportes/${encodeURIComponent(folioSeleccionado)}/estatus`,
+        {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            },
+            body: JSON.stringify({ estatus: nuevoEstado })
+        }
+    );
+
+    if (!response.ok) {
+        const detalle = await response.text();
+        throw new Error(`HTTP ${response.status}: ${detalle}`);
+    }
+
     if (estado) {
         const codigo = nuevoEstado.split('_').slice(1).join('-').toLowerCase();
 
@@ -51,26 +75,12 @@ document.getElementById('guardarEstado').addEventListener('click', async functio
 
     document.getElementById('modal-estado').style.display = 'none';
 
+    console.log(`Estado del folio ${folioSeleccionado} actualizado a ${nuevoEstado}`);
 
-
-    try {
-        const response = await fetch(`${API_URL}/v1/reportes/${encodeURIComponent(folioSeleccionado)}/estatus`, {
-            method: 'PATCH',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ estatus: nuevoEstado })
-        });
-
-        if (!response.ok) {
-            throw new Error('No se pudo actualizar en la base de datos');
-        }
-
-        console.log(`Estado del folio ${folioSeleccionado} actualizado a ${nuevoEstado}`);
-    } catch (error){
-        console.error('Error al guardar el cambio de estado:', error);
-        alert('Ocurrió un error al guardar el cambio en el servidor.');
-    }
+} catch (error) {
+    console.error('Error al guardar el cambio de estado:', error);
+    alert('Ocurrió un error al guardar el cambio en el servidor.');
+}
 
 });
 
@@ -175,7 +185,12 @@ document.getElementById('guardarAsignacion').addEventListener('click', async fun
         return;
     }
 
-    const token = localStorage.getItem('access_token') ////////
+    const token = sessionStorage.getItem('access_token');
+
+    if (!token) {
+        alert('No hay una sesión activa de Cognito.');
+        return;
+    }
     
     document.getElementById('modal-asignacion').style.display = 'none';
 
