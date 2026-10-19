@@ -26,7 +26,7 @@ import {
 } from './graficasAlimentador.mjs';
 
 // Obtener el correo del alimentador autenticado
-const correoAlimentador = localStorage.getItem('correoAlimentador') || 'alim3@rieti.mx';
+const correoAlimentador = localStorage.getItem('correoAlimentador') || 'giancarlo.morenov@gmail.com';
 
 /**
  * Inicializa el dashboard de gráficas filtrado por el municipio del alimentador.
