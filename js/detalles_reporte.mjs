@@ -5,7 +5,7 @@ import { API_URL } from "./api_url.mjs";
 window.addEventListener('load', function() {
     const pantallaCarga = document.getElementById('pantalla-carga');
     
-    pantallaCarga.style.display = 'none'
+    pantallaCarga.style.display = 'none';
 })
 
 
@@ -39,71 +39,97 @@ document.addEventListener('DOMContentLoaded', async function() {
 });
 
 
-// Función para mostrar detalles
 function mostrarDetalles(reporte) {
     document.getElementById('folio-reporte').textContent = reporte.folio;
-    // document.getElementById('estatus-reporte').textContent = reporte.estatus;
 
-    //Nombre
-    const nombre = document.getElementById('nombre-usuario');
-    if (reporte.nombre === "") {
-        nombre.textContent = 'anónimo';
-    } else {
-        nombre.textContent = reporte.nombre + ' ' + reporte.ap_paterno + ' ' + reporte.ap_materno;
-    }
+    // Nombre del remitente
+    const nombreU = !reporte.nombre ? 'Anónimo' : `${reporte.nombre} ${reporte.ap_paterno ?? ''} ${reporte.ap_materno ?? ''}`.trim();
+    document.getElementById('nombre-usuario').textContent = nombreU;
     
-    document.getElementById('correo-usuario').textContent = reporte.correoU;
+    document.getElementById('correo-usuario').textContent = reporte.correoU ?? 'Sin correo';
     document.getElementById('cantidad-ninos').textContent = reporte.numNinios;
     document.getElementById('edad').textContent = reporte.edad;
     document.getElementById('horario').textContent = reporte.dia;
     document.getElementById('tipo-trabajo').textContent = reporte.tipoTrabajo;
-    document.getElementById('detalles').textContent = reporte.detalles_adicionales;
+    document.getElementById('detalles').textContent = reporte.detalles_adicionales ?? 'Sin detalles adicionales';
     document.getElementById('direccion-caso').textContent = reporte.direccion;
 
+    // Estatus
     const statusSpan = document.getElementById('estatus-reporte');
     if (statusSpan && reporte.estatus) {
+        const estatusLimpio = reporte.estatus.split('_').slice(1).join(' ');
         const claseCSS = reporte.estatus.split('_').slice(1).join('-').toLowerCase();
-        statusSpan.textContent = reporte.estatus.split('_').slice(1).join(' ');
+        
+        statusSpan.textContent = estatusLimpio;
         statusSpan.className = `status status-${claseCSS}`;
     }
 
-    // ------------------------------------------ MAPA ------------------------------------------
+    // MAPA (Leaflet)
     const contenedorMapaDetalle = document.getElementById('mapa-detalle-reporte');
-
-    if (contenedorMapaDetalle) {
-        // Coordenadas del reporte específico (Latitud, Longitud)
+    if (contenedorMapaDetalle && reporte.latitud && reporte.longitud) {
         const latitudReporte = reporte.latitud;
         const longitudReporte = reporte.longitud;
+        const municipio = (reporte.municipio ?? '').split('_').join(' ');
 
-        const municipio = reporte.municipio.split('_').join(' ');
-
-        // 1. Crear el mapa centrado en la ubicación del caso
         const mapaDetalle = L.map('mapa-detalle-reporte').setView([latitudReporte, longitudReporte], 15);
 
-        // 2. Capa base de mapas (CartoDB Positron)
-        // L.tileLayer('https://basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
-        //     maxZoom: 19,
-        //     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-        // }).addTo(mapaDetalle);
-    L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
-        maxZoom: 18,
-        //attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
-    }).addTo(mapaDetalle);
+        L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+            maxZoom: 18
+        }).addTo(mapaDetalle);
 
-        // 3. Crear el Pin / Marcador en la dirección exacta
         const marcador = L.marker([latitudReporte, longitudReporte]).addTo(mapaDetalle);
-
-        // 4. (Opcional) Agregar un globo con información al hacer clic en el pin
         marcador.bindPopup(`
             <div style="font-size: 13px;">
                 <strong>Folio:</strong> ${reporte.folio}<br>
                 <strong>Ubicación:</strong> ${municipio}
             </div>
-        `).openPopup(); // .openPopup() hace que aparezca abierto por defecto
+        `).openPopup();
     }
 
     // ------------------------------------------ HISTORIAL ------------------------------------------
-    // const historial = 
+    const historial = document.getElementById('historial-cambios');
+    if (historial) {
+        historial.innerHTML = ''; // Limpiamos elementos estáticos del HTML
+
+        const fechaEnvio = reporte.dia ? reporte.dia.split('T')[0] : 'Fecha no registrada';
+        const estatusActual = reporte.estatus ? reporte.estatus.split('_').slice(1).join(' ') : 'Registrado';
+
+        // Evento 1: Creación
+        agregarPuntoHistorial(`${nombreU} envió reporte`, fechaEnvio, 'creacion');
+
+        // Evento 2: Estatus inicial
+        agregarPuntoHistorial(`Estado asignado: ${estatusActual}`, fechaEnvio, 'cambio_estatus');
+    }
+}
+
+
+// Función para adjuntar un nuevo evento al historial de manera segura
+export function agregarPuntoHistorial(descripcion, fechaTexto = null, tipo = 'cambio_estatus') {
+    const historial = document.getElementById('historial-cambios');
+    if (!historial) return; // Si no existe el contenedor en la vista actual, ignora silenciosamente
+
+    const li = document.createElement('li');
+    li.className = `evento-${tipo}`;
+
+    // Si no se pasa fecha, toma la fecha/hora actual
+    let fechaMostrar = fechaTexto;
+    if (!fechaMostrar) {
+        const ahora = new Date();
+        fechaMostrar = ahora.toLocaleDateString('es-MX', {
+            day: 'numeric',
+            month: 'long',
+            year: 'numeric'
+        });
+    }
+
+    li.innerHTML = `
+        <div class="punto-historial">
+            <p class="detalle-historial">${descripcion}</p>
+            <p class="fecha-historial">${fechaMostrar}</p>
+        </div>
+    `;
+
+    historial.appendChild(li);
 }
 
 async function MostrarEvidencia (folio) {
