@@ -27,8 +27,6 @@ document.addEventListener('click', function(event) {
     }
 });
 
-
-
 document.getElementById('guardarEstado').addEventListener('click', async function () {
     const selectNuevoEstado = document.getElementById('nuevoEstado');
     const nuevoEstado = selectNuevoEstado.value;
@@ -47,41 +45,6 @@ document.getElementById('guardarEstado').addEventListener('click', async functio
         return;
     }
 
-<<<<<<< Updated upstream
-    const response = await fetch(
-        `${API_URL}/v1/reportes/${encodeURIComponent(folioSeleccionado)}/estatus`,
-        {
-            method: 'PATCH',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${token}`
-            },
-            body: JSON.stringify({ estatus: nuevoEstado })
-        }
-    );
-
-    if (!response.ok) {
-        const detalle = await response.text();
-        throw new Error(`HTTP ${response.status}: ${detalle}`);
-    }
-
-    if (estado) {
-        const codigo = nuevoEstado.split('_').slice(1).join('-').toLowerCase();
-
-        estado.textContent = nuevoEstado.split('_').slice(1).join(' ');
-        estado.className = `status status-${codigo}`;
-    }
-
-    document.getElementById('modal-estado').style.display = 'none';
-
-    console.log(`Estado del folio ${folioSeleccionado} actualizado a ${nuevoEstado}`);
-
-} catch (error) {
-    console.error('Error al guardar el cambio de estado:', error);
-    alert('Ocurrió un error al guardar el cambio en el servidor.');
-}
-
-=======
     try {
         const response = await fetch(
             `${API_URL}/v1/reportes/${encodeURIComponent(folioSeleccionado)}/estatus`,
@@ -130,7 +93,6 @@ document.getElementById('guardarEstado').addEventListener('click', async functio
         console.error('Error al guardar el cambio de estado:', error);
         alert('Ocurrió un error al guardar el cambio en el servidor.');
     }
->>>>>>> Stashed changes
 });
 
 
