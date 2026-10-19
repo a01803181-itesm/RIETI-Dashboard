@@ -229,21 +229,21 @@ export function canvasCoordenadas(datos) {
 export function datoPorcentajeEstadisticasPendientes({ data = 0 } = {}) {
     const elemento = document.getElementById('porcentaje-reportes-pendientes');
     if (elemento) {
-        elemento.textContent = `${Number(data).toFixed(1)}%`;
+        elemento.textContent = `${Number(data).toFixed(1)}`;
     }
 }
 
 export function datoPorcentajeEstadisticasEnProceso({ data = 0 } = {}) {
     const elemento = document.getElementById('porcentaje-reportes-en-proceso');
     if (elemento) {
-        elemento.textContent = `${Number(data).toFixed(1)}%`;
+        elemento.textContent = `${Number(data).toFixed(1)}`;
     }
 }
 
 export function datoPromedioResolucion({ data = 0 } = {}) {
     const elemento = document.getElementById('dias-promedio-resolucion');
     if (elemento) {
-        elemento.textContent = `${Number(data).toFixed(1)} días`;
+        elemento.textContent = `${Number(data).toFixed(1)}`;
     }
 }
 
