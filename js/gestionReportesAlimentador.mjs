@@ -51,7 +51,7 @@ export function detallesReportesGestionAlimentador(reportes) {
         const botonVer = tr.querySelector('.boton-ver-detalle');
         botonVer.addEventListener('click', () => {
             sessionStorage.setItem('reporteSeleccionado', JSON.stringify(reporte));
-            window.open('detalles_reporte.html', '_blank');
+            window.open('detalles_reporte_procurador.html', '_blank');
         });
 
         cuerpoTabla.appendChild(tr);
