@@ -51,7 +51,7 @@ function mostrarDetalles(reporte) {
     // document.getElementById('estatus-reporte').textContent = reporte.estatus;
 
     //Nombre
-    const nombre = document.getElementById('nombre-usuario');
+    const nombre = document.getElementById('nombre-denunciante');
     if (reporte.nombre === "") {
         nombre.textContent = 'anónimo';
     } else {
