@@ -4,21 +4,23 @@ import { API_URL } from "./api_url.mjs";
 // Pantalla de carga
 window.addEventListener('load', function() {
     const pantallaCarga = document.getElementById('pantalla-carga');
-    
-    pantallaCarga.style.display = 'none'
-})
+
+    if (pantallaCarga) {
+        pantallaCarga.style.display = 'none';
+    }
+});
 
 
 // Acción al cargar la página
 document.addEventListener('DOMContentLoaded', async function() {
 
     const urlParams = new URLSearchParams(window.location.search);
-    const folio = urlParams.get('folio').slice(1);
+    const folio = urlParams.get('folio');
 
     if (!folio) {
         console.error('No se especificó un folio en la URL');
         return;
-    }
+        }
 
     try {
         console.log(folio);

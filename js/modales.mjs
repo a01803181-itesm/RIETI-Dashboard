@@ -40,7 +40,7 @@ document.getElementById('guardarEstado').addEventListener('click', async functio
 
     console.log(`Enviando petición PATCH para folio: ${folioSeleccionado} con estatus: ${nuevoEstado}`);
 
-    const estado = filaSeleccionada.querySelector('.status');
+    const estado = filaSeleccionada?.querySelector('.status') ?? null;
 
 try {
     const token = sessionStorage.getItem('access_token');
