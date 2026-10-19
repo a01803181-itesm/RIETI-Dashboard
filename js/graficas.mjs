@@ -191,17 +191,20 @@ export function canvasReportesRangoHora(datos) {
 
     const ctxReportesRangoHora = canvasReportesRangoHora.getContext('2d');
 
-    const labelResportesRangoHora = datos.map(item => item.categoria);
-    const valoresReporteRangoHora = datos.map(item => item.total)
+    // Ordenar los datos por hora (categoria) de menor a mayor
+    const datosOrdenados = [...datos].sort((a, b) => Number(a.categoria) - Number(b.categoria));
 
-    //Gráficas Reportes por Municipio
+    const labelResportesRangoHora = datosOrdenados.map(item => item.categoria);
+    const valoresReporteRangoHora = datosOrdenados.map(item => item.total);
+
+    // Gráfica Reportes por Rango de Hora
     new Chart(ctxReportesRangoHora, {
         type: 'bar',
         data: {
             labels: labelResportesRangoHora,
             datasets: [
                 {
-                    label: 'Reportes por Municipio',
+                    label: 'Reportes por Rango de Hora',
                     data: valoresReporteRangoHora,
                     borderColor: '#b002c7',
                     backgroundColor: 'rgba(189, 2, 199, 0.4)',
@@ -217,7 +220,7 @@ export function canvasReportesRangoHora(datos) {
                 },
                 title: {
                     display: true,
-                    text: 'Reportes por Municipio'
+                    text: 'Reportes por Rango de Hora'
                 }
             },
             scales: {
@@ -226,10 +229,8 @@ export function canvasReportesRangoHora(datos) {
                 }
             }
         }
-
     });
 }
-
 // ----------------------------------------- GRÁFICA RENDIMIENTO POR AUTORIDAD -----------------------------------------
 
 /**
