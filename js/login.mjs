@@ -37,7 +37,7 @@ async function iniciarSesion() {
     sessionStorage.setItem("pkce_verifier", verificador);
     sessionStorage.setItem("oauth_state", state);
 
-    const redirectUri = new URL("./login.html", window.location.href).href; //pruebas
+    const redirectUri = new URL("./index.html", window.location.href).href; //pruebas
 
     const params = new URLSearchParams({
         client_id: CLIENT_ID,
@@ -71,7 +71,7 @@ async function procesarCallback () {
         return;
     }
 
-    const redirectUri = new URL("./login.html", window.location.href).href;
+    const redirectUri = new URL("./index.html", window.location.href).href;
 
     try {
         const respuesta = await fetch ( `${COGNITO_DOMAIN}/oauth2/token`, 
@@ -132,7 +132,7 @@ sessionStorage.setItem ("access_token", tokens.access_token);
             window.location.replace("./index.html");
         }
         else if (identidad.rol === "alimentador") {
-            window.location.replace("./index_procurador.html");
+            window.location.replace("./dashboard_procurador.html");
         }
         else {
             throw new Error ("No rol");
