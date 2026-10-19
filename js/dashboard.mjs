@@ -82,3 +82,20 @@ export function detallesReportes(datos) {
     tbody.innerHTML = filasHTML;
 
 }
+
+document.addEventListener('click', async function(event) {
+    const botonVer = event.target.closest('.boton-ver');
+    // const padre = ((botonVer.parentElement).parentElement).parentElement;
+    const padre = botonVer.closest('tr');
+    const hijo = padre.children[0];
+    const folio = hijo.textContent;
+
+    if(botonVer) {
+        console.log('Ver detalles del folio:', folio);
+        console.log('El elemento padre es: ', padre);
+        console.log('El elemento hijo es: ', hijo);
+
+
+        window.open(`detalles_reporte.html?folio=?${encodeURIComponent(folio)}`, '_blank');
+    }
+})
