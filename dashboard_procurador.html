@@ -1,5 +1,5 @@
 <!-- Esta página es probable que se quite. 
- Hay que ver que tan fácil es que dependiendo de las credenciales solo oculte los botones se aginación. -->
+     Hay que ver que tan fácil es que dependiendo de las credenciales solo oculte los botones se aginación. -->
 
 <!DOCTYPE html>
 <html lang="es">
@@ -45,22 +45,22 @@
             </header>
             
             <section id="fila-uno-reportes">
-                <div class="reportes-fila-uno" id="total-reportes">
+                <div class="reportes-fila-uno" id="cant-total">
                     <h1>Total de reportes</h1>
-                    <p>142</p>
-                    <p id="resumen-total-reportes"><span style="color: #10b981;">+8.2%</span> de la última semana</p>
+                    <p id="cant-total">0</p>
+                    <p id="resumen-total-reportes"><span style="color: #10b981;">+0.0%</span> de la última semana</p>
                 </div>
                 <div class="reportes-fila-uno">
                     <h1 id="reportes-completados">Completados</h1>
-                    <p>98</p>
+                    <p id="cant-completados">0</p>
                 </div>
                 <div class="reportes-fila-uno">
                     <h1 id="reportes-proceso">En proceso</h1>
-                    <p>32</p>
+                    <p id="cant-proceso">0</p>
                 </div>
                 <div class="reportes-fila-uno">
                     <h1 id="reportes-pendientes">Pendientes</h1>
-                    <p>12</p>
+                    <p id="cant-pendientes">0</p>
                 </div>
             </section>
 
@@ -148,6 +148,7 @@
             </section>
         </main>
 
+        <script type="module" src="./js/appDashboardAlimentador.mjs"></script>
         <script type="module" src="./js/appGraficasAlimentador.mjs"></script>
         <script type="module" src="./js/navegacion.mjs"></script>
         <script type="module" src="./js/appGestionReportesAlimentador.mjs"></script>

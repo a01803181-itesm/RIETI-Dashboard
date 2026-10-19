@@ -466,3 +466,19 @@ export async function obtenerReportesConEstatusPorAlimentador(correoAlimentador)
         throw error;
     }
 }
+
+// Obtener métricas consolidadas (totales, completados, en proceso, pendientes) por alimentador
+export async function obtenerCantidadesDeReportesPorAlimentador(correoAlimentador) {
+  try {
+    const response = await fetch(
+      `${API_URL}/v1/reportes/por-estatus/cantidad/por-alimentador/${encodeURIComponent(correoAlimentador)}`
+    );
+    if (!response.ok) {
+      throw new Error(`Error al obtener cantidades de reportes por alimentador: ${response.status}`);
+    }
+    return await response.json();
+  } catch (error) {
+    console.error('Error al obtener cantidades de reportes por alimentador:', error);
+    throw error;
+  }
+}
