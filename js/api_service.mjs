@@ -450,3 +450,19 @@ export async function obtenerDetallesReportePorFolioConEstatus(folio) {
     throw error;
   }
 }
+
+export async function obtenerReportesConEstatusPorAlimentador(correoAlimentador) {
+    try {
+        const response = await fetch(
+            `${API_URL}/v1/reportes/detalles/estatus/por-alimentador/${encodeURIComponent(correoAlimentador)}`
+        );
+        if (!response.ok) {
+            throw new Error(`Error al obtener los reportes con estatus por alimentador: ${response.status}`);
+        }
+
+        return await response.json();
+    } catch (error) {
+        console.error('Error al obtener los reportes con estatus por alimentador:', error);
+        throw error;
+    }
+}
