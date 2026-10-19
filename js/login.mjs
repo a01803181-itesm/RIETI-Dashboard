@@ -129,7 +129,7 @@ sessionStorage.setItem ("access_token", tokens.access_token);
         console.log ("Rol de usuario:", identidad.rol);
 
         if (identidad.rol ==="admin"){
-            window.location.replace("./index.html");
+            window.location.replace("./dashboard.html");
         }
         else if (identidad.rol === "alimentador") {
             window.location.replace("./dashboard_procurador.html");
