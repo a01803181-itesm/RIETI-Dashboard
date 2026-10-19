@@ -81,27 +81,6 @@ try {
     console.error('Error al guardar el cambio de estado:', error);
     alert('Ocurrió un error al guardar el cambio en el servidor.');
 }
-    const token = localStorage.getItem('access_token')
-
-    try {
-        const response = await fetch(`${API_URL}/v1/reportes/${encodeURIComponent(folioSeleccionado)}/estatus`, {
-            method: 'PATCH',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${token}`
-            },
-            body: JSON.stringify({ estatus: nuevoEstado })
-        });
-
-        if (!response.ok) {
-            throw new Error('No se pudo actualizar en la base de datos');
-        }
-
-        console.log(`Estado del folio ${folioSeleccionado} actualizado a ${nuevoEstado}`);
-    } catch (error){
-        console.error('Error al guardar el cambio de estado:', error);
-        alert('Ocurrió un error al guardar el cambio en el servidor.');
-    }
 
 });
 
