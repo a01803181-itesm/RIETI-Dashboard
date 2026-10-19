@@ -3,6 +3,9 @@
  */
 
 // Ver listado completo de reportes
+
+import { API_URL } from "./api_url.mjs";
+
 const botonVerTodosListadoReportes = document.getElementById('boton-ver-todos');
 
 if(botonVerTodosListadoReportes){
@@ -97,6 +100,44 @@ function filtrarReportes(estadoFiltro) {
         }
     });
 }
+
+async function mostrarNombre() {
+    const elementoNombre = document.getElementById("nombre-usuario");
+
+    if (!elementoNombre) return;
+
+    const token = sessionStorage.getItem("access_token");
+
+    if (!token){
+        elementoNombre.textContent = "sin sesión";
+        return;
+    }
+
+    try {
+        const response = await fetch(`${API_URL}/v1/auth/identity`, {
+            method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        });
+
+        if (!response.ok){
+            throw new Error (`HTTP ${response.status}`);
+        }
+
+        const usuario = await response.json();
+
+        elementoNombre.textContent = usuario.nombre || "Usuario";
+
+        console.log ("Usuario:", usuario.nombre);
+    }
+    catch (error) {
+        console.error ("error al obtener usuario", error);
+        elementoNombre.textContent = "Usuario";
+    }  
+}
+
+mostrarNombre ();
 
 
 
