@@ -15,12 +15,14 @@ window.addEventListener('load', function() {
 document.addEventListener('DOMContentLoaded', async function() {
 
     const urlParams = new URLSearchParams(window.location.search);
-    const folio = urlParams.get('folio');
+    const folioOriginal = urlParams.get('folio');
+
+    const folio = folioOriginal?.replace(/^\?/, '');
 
     if (!folio) {
         console.error('No se especificó un folio en la URL');
         return;
-        }
+    }
 
     try {
         console.log(folio);
