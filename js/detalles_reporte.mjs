@@ -109,7 +109,18 @@ function mostrarDetalles(reporte) {
     }
 
     // ------------------------------------------ HISTORIAL ------------------------------------------
-    // const historial = 
+    const historialAutor = document.getElementById('historial-autor');
+
+if (historialAutor) {
+    const nombreCompleto = [reporte.nombre, reporte.ap_paterno, reporte.ap_materno]
+        .filter(Boolean)
+        .join(' ')
+        .trim();
+
+    historialAutor.textContent = nombreCompleto
+        ? `${nombreCompleto} envió reporte`
+        : 'Un usuario anónimo envió reporte';
+}
 }
 
 async function MostrarEvidencia (folio) {
