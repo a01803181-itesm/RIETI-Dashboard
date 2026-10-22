@@ -5,7 +5,7 @@ const CLIENT_ID = COGNITO_CONFIG.clientId;
 const REDIRECT_URI = COGNITO_CONFIG.redirectUri;
 const API_URL = "https://nyazu3k2shty7f2hmhqnrae3fq0cvdjz.lambda-url.us-east-1.on.aws";
 
-const botonInicioSesion = document.getElementById("botonIniciarSesion");
+
 
 console.log ("Configuración de Cognito funcionando")
 
@@ -37,13 +37,12 @@ async function iniciarSesion() {
     sessionStorage.setItem("pkce_verifier", verificador);
     sessionStorage.setItem("oauth_state", state);
 
-    const redirectUri = new URL("./index.html", window.location.href).href; //pruebas
 
     const params = new URLSearchParams({
         client_id: CLIENT_ID,
         response_type: "code",
         scope: "openid email",
-        redirect_uri: redirectUri,
+        redirect_uri: REDIRECT_URI,
         code_challenge_method: "S256",
         code_challenge: challenge,
         state: state
@@ -53,7 +52,17 @@ async function iniciarSesion() {
         `${COGNITO_DOMAIN}/oauth2/authorize?${params.toString()}`;
 }
 
-botonInicioSesion.addEventListener("click", iniciarSesion);
+document.addEventListener("DOMContentLoaded", async () => {
+    const parametros = new URLSearchParams(window.location.search);
+
+    if (parametros.has("code")) {
+        await procesarCallback();
+    } else if (parametros.has("error")) {
+        console.error("Error de Cognito:", parametros.get("error"));
+    } else {
+        await iniciarSesion();
+    }
+});
 
 async function procesarCallback () {
     const parametros = new URLSearchParams(window.location.search);
@@ -71,8 +80,6 @@ async function procesarCallback () {
         return;
     }
 
-    const redirectUri = new URL("./index.html", window.location.href).href;
-
     try {
         const respuesta = await fetch ( `${COGNITO_DOMAIN}/oauth2/token`, 
             {
@@ -82,7 +89,7 @@ async function procesarCallback () {
                     grant_type: "authorization_code",
                     client_id: CLIENT_ID,
                     code: codigo,
-                    redirect_uri: redirectUri,
+                    redirect_uri: REDIRECT_URI,
                     code_verifier: verificador
         })
     }
@@ -103,7 +110,7 @@ sessionStorage.setItem ("access_token", tokens.access_token);
         window.history.replaceState(
             {},
             "",
-            window.location.pathname
+            REDIRECT_URI
         );
 
         const respuestaIdentidad =await fetch(
@@ -143,5 +150,3 @@ sessionStorage.setItem ("access_token", tokens.access_token);
     }
 
 }
-
-procesarCallback();
