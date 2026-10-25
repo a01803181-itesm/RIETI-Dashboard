@@ -1,9 +1,17 @@
+/**
+ * @fileoverview Implementa gráficas, métricas y mapa de calor para la vista administrativa.
+ * @author Cassandra Vanessa Padilla Barovier (A01753547, ITC)
+ * @author Giancarlo Moreno Vázquez (A01803172, ITC)
+ * @author Alexander Mejia Tovar (A01803181, ITC)
+ * @author César Ariel Rodríguez Sandoval (A01802924, ITC)
+ * @author Santiago Abraham Rios Palacios (A01802727, ITC)
+ */
 // ----------------------------------------- GRÁFICA REPORTES SEGUN SU ESTADO -----------------------------------------
 
 /**
  * Renderiza una gráfica de dona con la distribución de los reportes según su estatus.
  * Destruye cualquier instancia previa asociada al canvas para evitar conflictos de Chart.js.
- * 
+ *
  * @function canvasEstadoReportes
  * @param {Array<Object>} datos - Lista de objetos con la información de los reportes (ej. { categoria: "2_En_revision", total: 10 }).
  * @returns {void}
@@ -185,6 +193,11 @@ export function canvasReportesMunicipio(datos) {
  */
 
 
+/**
+ * Ordena y grafica la cantidad de reportes por hora del día.
+ * @param {Array<Object>} datos Categorías horarias y sus totales.
+ * @returns {void}
+ */
 export function canvasReportesRangoHora(datos) {
     const canvasReportesRangoHora = document.getElementById('grafica-reportes-rango-hora');
     if (!canvasReportesRangoHora || !Array.isArray(datos)) return;
@@ -338,6 +351,11 @@ export function canvasCoordenadas(datos) {
 //     porcentaje.textContent = String(dato)
 // }
 
+/**
+ * Presenta el porcentaje de reportes pendientes en el indicador de la página.
+ * @param {{data?: number|string}} datos Respuesta del endpoint de porcentaje.
+ * @returns {void}
+ */
 export function datoPorcentajeEstadisticasPendientes({ data = 0 } = {}) {
     const elemento = document.getElementById('porcentaje-reportes-pendientes');
     if (elemento) {
@@ -351,6 +369,11 @@ export function datoPorcentajeEstadisticasPendientes({ data = 0 } = {}) {
 //     porcentaje.textContent = String(dato)
 // }
 
+/**
+ * Presenta el porcentaje de reportes en proceso en el indicador de la página.
+ * @param {{data?: number|string}} datos Respuesta del endpoint de porcentaje.
+ * @returns {void}
+ */
 export function datoPorcentajeEstadisticasEnProceso({ data = 0 } = {}) {
     const elemento = document.getElementById('porcentaje-reportes-en-proceso');
     if (elemento) {
@@ -364,6 +387,11 @@ export function datoPorcentajeEstadisticasEnProceso({ data = 0 } = {}) {
 //     porcentaje.textContent = String(dato)
 // }
 
+/**
+ * Muestra el promedio de días que toma resolver un reporte.
+ * @param {{data?: number|string}} datos Respuesta de la métrica.
+ * @returns {void}
+ */
 export function datoPromedioResolucion({ data = 0 } = {}) {
     const elemento = document.getElementById('dias-promedio-resolucion');
     if (elemento) {
@@ -377,6 +405,11 @@ export function datoPromedioResolucion({ data = 0 } = {}) {
 //     porcentaje.textContent = String(dato)
 // }
 
+/**
+ * Muestra el total de reportes pendientes recibidos durante la última semana.
+ * @param {{data?: number|string}} datos Respuesta de la métrica.
+ * @returns {void}
+ */
 export function datoPendientesUltimaSemana({ data = 0 } = {}) {
     const elemento = document.getElementById('pendientes-ultima-semana');
     if (elemento) {

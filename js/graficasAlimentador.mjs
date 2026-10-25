@@ -1,9 +1,17 @@
+/**
+ * @fileoverview Implementa gráficas, métricas y mapa de calor de reportes municipales.
+ * @author Cassandra Vanessa Padilla Barovier (A01753547, ITC)
+ * @author Giancarlo Moreno Vázquez (A01803172, ITC)
+ * @author Alexander Mejia Tovar (A01803181, ITC)
+ * @author César Ariel Rodríguez Sandoval (A01802924, ITC)
+ * @author Santiago Abraham Rios Palacios (A01802727, ITC)
+ */
 // ----------------------------------------- GRÁFICA REPORTES POR ESTATUS (ALIMENTADOR) -----------------------------------------
 
 /**
  * Renderiza una gráfica de dona con la distribución de los reportes por estatus para el alimentador.
  * Destruye la instancia previa del canvas si existe.
- * 
+ *
  * @function canvasEstadoReportes
  * @param {Array<Object>} datos Lista de objetos { categoria: string, total: number }
  */
@@ -226,6 +234,11 @@ export function canvasCoordenadas(datos) {
 
 // ----------------------------------------- INDICADORES NUMÉRICOS / KPIS -----------------------------------------
 
+/**
+ * Presenta el porcentaje municipal de reportes pendientes.
+ * @param {{data?: number|string}} datos Respuesta de la métrica.
+ * @returns {void}
+ */
 export function datoPorcentajeEstadisticasPendientes({ data = 0 } = {}) {
     const elemento = document.getElementById('porcentaje-reportes-pendientes');
     if (elemento) {
@@ -233,6 +246,11 @@ export function datoPorcentajeEstadisticasPendientes({ data = 0 } = {}) {
     }
 }
 
+/**
+ * Presenta el porcentaje municipal de reportes en proceso.
+ * @param {{data?: number|string}} datos Respuesta de la métrica.
+ * @returns {void}
+ */
 export function datoPorcentajeEstadisticasEnProceso({ data = 0 } = {}) {
     const elemento = document.getElementById('porcentaje-reportes-en-proceso');
     if (elemento) {
@@ -240,6 +258,11 @@ export function datoPorcentajeEstadisticasEnProceso({ data = 0 } = {}) {
     }
 }
 
+/**
+ * Muestra el promedio municipal de días para resolver reportes.
+ * @param {{data?: number|string}} datos Respuesta de la métrica.
+ * @returns {void}
+ */
 export function datoPromedioResolucion({ data = 0 } = {}) {
     const elemento = document.getElementById('dias-promedio-resolucion');
     if (elemento) {
@@ -247,6 +270,11 @@ export function datoPromedioResolucion({ data = 0 } = {}) {
     }
 }
 
+/**
+ * Muestra el número municipal de reportes pendientes de la última semana.
+ * @param {{data?: number|string}} datos Respuesta de la métrica.
+ * @returns {void}
+ */
 export function datoPendientesUltimaSemana({ data = 0 } = {}) {
     const elemento = document.getElementById('pendientes-ultima-semana');
     if (elemento) {

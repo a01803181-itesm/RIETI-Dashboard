@@ -1,6 +1,15 @@
 /**
- * Pinta los reportes en la tabla sin modales ni menú desplegable.
- * @param {Array} reportes Lista de objetos de reportes recibidos del backend.
+ * @fileoverview Construye la vista de gestión de reportes para el alimentador municipal.
+ * @author Cassandra Vanessa Padilla Barovier (A01753547, ITC)
+ * @author Giancarlo Moreno Vázquez (A01803172, ITC)
+ * @author Alexander Mejia Tovar (A01803181, ITC)
+ * @author César Ariel Rodríguez Sandoval (A01802924, ITC)
+ * @author Santiago Abraham Rios Palacios (A01802727, ITC)
+ */
+/**
+ * Crea las filas de reportes municipales, incluyendo estados vacíos y navegación al detalle.
+ * @param {Array<Object>} reportes Reportes devueltos por el servicio.
+ * @returns {void}
  */
 export function detallesReportesGestionAlimentador(reportes) {
     const cuerpoTabla = document.getElementById('cuerpo-tabla');

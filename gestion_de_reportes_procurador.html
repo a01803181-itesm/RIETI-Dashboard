@@ -1,4 +1,13 @@
 <!DOCTYPE html>
+<!--
+    Interfaz municipal para consultar y gestionar los reportes locales.
+    Autores:
+    - Cassandra Vanessa Padilla Barovier (A01753547, ITC)
+    - Giancarlo Moreno Vázquez (A01803172, ITC)
+    - Alexander Mejia Tovar (A01803181, ITC)
+    - César Ariel Rodríguez Sandoval (A01802924, ITC)
+    - Santiago Abraham Rios Palacios (A01802727, ITC)
+-->
 <html lang="es">
     <head>
         <meta charset="UTF-8">
@@ -15,15 +24,12 @@
         <aside id="menu">
             <div id="perfil-de-usuario">
                 <img src="./imagenes/perfil-de-usuario.webp" alt="Usuario" width="24" height="24">
-                <div>
-                    <p style="margin: 0; font-weight: bold;">Pedro Vázquez</p>
-                    <small style="color: #64748b; font-size: 11px;">Alimentador Municipal</small>
-                </div>
+                <p id="nombre-usuario">Cargando...</p>
             </div>
 
             <div id="panelControl">
-                <h1 id="tituloRieti">RIETI ALIMENTADOR</h1>
-                <p id="textoPanel">Atizapán de Zaragoza</p>
+                <h1 id="tituloRieti">ALIMENTADOR</h1>
+                <p id="textoPanel">Panel de control</p>
             </div>
 
             <nav id="lista-menu">
@@ -45,6 +51,7 @@
                 </div>
             </header>
 
+            <!-- Buscador y tabla para consultar los reportes locales del alimentador. -->
             <section id="contenedor-tabla">
                 <div id="contenedor-header-tabla">
                     <div id="header-tabla">
@@ -52,6 +59,7 @@
                         <p>Consulta de incidencias en Atizapán</p>
                     </div>
                     <label id="contenedor-buscador">
+                        <!-- El módulo de gestión aplica el filtro de texto sobre las filas creadas. -->
                         <input id="buscador" type="search" placeholder="Ingrese Folio">
                         <button id="botonBuscar"><i class="fas fa-search"></i></button>
                     </label>
@@ -70,7 +78,7 @@
                                 </tr>
                             </thead>
                             <tbody id="cuerpo-tabla">
-                                <!-- Se llena dinámicamente con JS -->
+                                <!-- appGestionReportesAlimentador.mjs consulta y renderiza los reportes. -->
                             </tbody>
                         </table>
                     </div>
@@ -78,6 +86,7 @@
             </section>
         </main>
 
+        <!-- Carga identidad del usuario, métricas y reportes municipales. -->
         <script type="module" src="./js/navegacion.mjs"></script>
         <script type="module" src="./js/appGraficasAlimentador.mjs"></script>
         <script type="module" src="./js/appGestionReportesAlimentador.mjs"></script>

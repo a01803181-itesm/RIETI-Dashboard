@@ -1,8 +1,15 @@
-// js/dashboardAlimentador.mjs
-
 /**
- * Pinta los conteos numéricos en las tarjetas superiores del Dashboard.
- * @param {Object} data - Objeto con las métricas { total, completados, en_proceso, pendientes }
+ * @fileoverview Renderiza las tarjetas y métricas del dashboard del alimentador municipal.
+ * @author Cassandra Vanessa Padilla Barovier (A01753547, ITC)
+ * @author Giancarlo Moreno Vázquez (A01803172, ITC)
+ * @author Alexander Mejia Tovar (A01803181, ITC)
+ * @author César Ariel Rodríguez Sandoval (A01802924, ITC)
+ * @author Santiago Abraham Rios Palacios (A01802727, ITC)
+ */
+/**
+ * Actualiza los cuatro conteos municipales en las tarjetas del dashboard.
+ * @param {{total?: number, completados?: number, en_proceso?: number, pendientes?: number}} data
+ * @returns {void}
  */
 export function renderizarTarjetasMetricas(data = {}) {
     const elTotal = document.getElementById('cant-total');
@@ -17,8 +24,9 @@ export function renderizarTarjetasMetricas(data = {}) {
 }
 
 /**
- * Pinta el promedio de días de resolución en el elemento correspondiente.
- * @param {Object} res - Objeto con la propiedad data
+ * Muestra el promedio de resolución municipal con un decimal y su unidad.
+ * @param {{data?: number|string}} res Respuesta de la métrica del servicio.
+ * @returns {void}
  */
 export function renderizarPromedioResolucion(res = {}) {
     const elemento = document.getElementById('promedio-dias-resolucion');

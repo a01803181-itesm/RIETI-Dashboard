@@ -1,7 +1,15 @@
+/**
+ * @fileoverview Consulta y muestra el detalle, estado y evidencia de un reporte administrativo.
+ * @author Cassandra Vanessa Padilla Barovier (A01753547, ITC)
+ * @author Giancarlo Moreno Vázquez (A01803172, ITC)
+ * @author Alexander Mejia Tovar (A01803181, ITC)
+ * @author César Ariel Rodríguez Sandoval (A01802924, ITC)
+ * @author Santiago Abraham Rios Palacios (A01802727, ITC)
+ */
 import { API_URL } from "./api_url.mjs";
 
 
-// Pantalla de carga
+// Oculta el indicador de carga una vez terminados los recursos de la página.
 window.addEventListener('load', function() {
     const pantallaCarga = document.getElementById('pantalla-carga');
 
@@ -11,7 +19,7 @@ window.addEventListener('load', function() {
 });
 
 
-// Acción al cargar la página
+// Lee el folio de la URL, consulta el reporte y después completa sus datos y evidencia.
 document.addEventListener('DOMContentLoaded', async function() {
 
     const urlParams = new URLSearchParams(window.location.search);
@@ -45,7 +53,11 @@ document.addEventListener('DOMContentLoaded', async function() {
 });
 
 
-// Función para mostrar detalles
+/**
+ * Copia los campos del reporte a la vista, formatea el estado y crea el mapa e historial.
+ * @param {Object} reporte Datos del reporte recibidos del API.
+ * @returns {void}
+ */
 function mostrarDetalles(reporte) {
     document.getElementById('folio-reporte').textContent = reporte.folio;
     // document.getElementById('estatus-reporte').textContent = reporte.estatus;
@@ -123,6 +135,11 @@ if (historialAutor) {
 }
 }
 
+/**
+ * Solicita las imágenes asociadas al folio y muestra carga, resultados o error en la vista.
+ * @param {string} folio Identificador del reporte.
+ * @returns {Promise<void>}
+ */
 async function MostrarEvidencia (folio) {
     const contenedor = document.getElementById("evidencia-reporte");
     

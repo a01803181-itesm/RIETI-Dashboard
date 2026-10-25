@@ -1,3 +1,11 @@
+/**
+ * @fileoverview Coordina la consulta y representación de reportes para administración.
+ * @author Cassandra Vanessa Padilla Barovier (A01753547, ITC)
+ * @author Giancarlo Moreno Vázquez (A01803172, ITC)
+ * @author Alexander Mejia Tovar (A01803181, ITC)
+ * @author César Ariel Rodríguez Sandoval (A01802924, ITC)
+ * @author Santiago Abraham Rios Palacios (A01802727, ITC)
+ */
 import {
     obtenerDetallesReportes
 } from './api_service.mjs';
@@ -6,6 +14,10 @@ import {
     detallesReportesGestion
 } from './gestionReportes.mjs';
 
+/**
+ * Obtiene reportes, aplica el filtro opcional de la URL y genera las filas de la tabla.
+ * @returns {Promise<void>}
+ */
 async function inicializarDatos() {
     try {
         const [ reportes ] = await Promise.all([ obtenerDetallesReportes() ]);
@@ -15,6 +27,7 @@ async function inicializarDatos() {
 
         let reportesAFiltrar = reportes;
 
+        // Traduce las categorías resumidas de la interfaz a los estatus de la API.
         if (filtro) {
             reportesAFiltrar = reportes.filter(reporte => {
                 const estatus = (reporte.estatus || '').toLowerCase();
@@ -41,6 +54,7 @@ async function inicializarDatos() {
     }
 }
 
+// Asegura que la tabla esté creada antes de insertar los reportes.
 if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', inicializarDatos);
 } else {

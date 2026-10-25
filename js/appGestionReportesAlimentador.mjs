@@ -1,3 +1,11 @@
+/**
+ * @fileoverview Coordina la consulta y representación de reportes municipales.
+ * @author Cassandra Vanessa Padilla Barovier (A01753547, ITC)
+ * @author Giancarlo Moreno Vázquez (A01803172, ITC)
+ * @author Alexander Mejia Tovar (A01803181, ITC)
+ * @author César Ariel Rodríguez Sandoval (A01802924, ITC)
+ * @author Santiago Abraham Rios Palacios (A01802727, ITC)
+ */
 import {
     obtenerReportesConEstatusPorAlimentador
 } from './api_service.mjs';
@@ -6,9 +14,13 @@ import {
     detallesReportesGestionAlimentador
 } from './gestionReportesAlimentador.mjs';
 
-// Obtener el correo del alimentador (desde localStorage o valor por defecto)
+// Limita la consulta de reportes al alimentador guardado para la sesión actual.
 const correoAlimentador = localStorage.getItem('correoAlimentador') || 'giancarlo.morenov@gmail.com';
 
+/**
+ * Consulta los reportes municipales, aplica el filtro de URL y presenta el resultado.
+ * @returns {Promise<void>}
+ */
 async function inicializarDatos() {
     try {
         // Se le pasa correoAlimentador a la función del servicio
@@ -19,6 +31,7 @@ async function inicializarDatos() {
 
         let reportesAFiltrar = reportes;
 
+        // Agrupa los estatus detallados de la API en las categorías del buscador.
         if (filtro) {
             reportesAFiltrar = reportes.filter(reporte => {
                 const estatus = (reporte.estatus || '').toLowerCase();
@@ -44,6 +57,7 @@ async function inicializarDatos() {
     }
 }
 
+// Espera a que exista el cuerpo de la tabla antes de renderizar.
 if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', inicializarDatos);
 } else {

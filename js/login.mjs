@@ -1,3 +1,11 @@
+/**
+ * @fileoverview Gestiona el inicio de sesión OAuth con PKCE y la redirección por rol.
+ * @author Cassandra Vanessa Padilla Barovier (A01753547, ITC)
+ * @author Giancarlo Moreno Vázquez (A01803172, ITC)
+ * @author Alexander Mejia Tovar (A01803181, ITC)
+ * @author César Ariel Rodríguez Sandoval (A01802924, ITC)
+ * @author Santiago Abraham Rios Palacios (A01802727, ITC)
+ */
 import { COGNITO_CONFIG } from "./config.mjs";
 
 const COGNITO_DOMAIN = COGNITO_CONFIG.domain;
@@ -9,6 +17,11 @@ const API_URL = "https://nyazu3k2shty7f2hmhqnrae3fq0cvdjz.lambda-url.us-east-1.o
 
 console.log ("Configuración de Cognito funcionando")
 
+/**
+ * Codifica bytes en Base64 URL-safe para usarlos en parámetros OAuth.
+ * @param {Uint8Array} bytes Bytes que se convertirán.
+ * @returns {string} Cadena Base64 sin relleno y apta para URL.
+ */
 function base64url (bytes){
     return btoa (String.fromCharCode(...bytes))
         .replace(/\+/g, "-")
@@ -16,12 +29,21 @@ function base64url (bytes){
         .replace(/=/g, "");
 }
 
+/**
+ * Genera un valor aleatorio criptográficamente seguro para PKCE y el parámetro state.
+ * @returns {string} Cadena aleatoria codificada en Base64 URL-safe.
+ */
 function generarCodigoAleatorio (){
     const bytes = new Uint8Array(32);
     crypto.getRandomValues(bytes);
     return base64url(bytes);
 }
 
+/**
+ * Calcula el challenge SHA-256 requerido por el flujo PKCE.
+ * @param {string} verificador Código secreto temporal generado para la sesión.
+ * @returns {Promise<string>} Challenge codificado en Base64 URL-safe.
+ */
 async function generarChallenge (verificador) {
     const datos = new TextEncoder().encode(verificador);
     const hash = await crypto.subtle.digest("SHA-256", datos);
@@ -29,6 +51,10 @@ async function generarChallenge (verificador) {
     
 }
 
+/**
+ * Guarda el verificador y state, y redirige al proveedor para autorizar el inicio de sesión.
+ * @returns {Promise<void>}
+ */
 async function iniciarSesion() {
     const verificador = generarCodigoAleatorio();
     const challenge = await generarChallenge(verificador);
@@ -64,6 +90,10 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
 });
 
+/**
+ * Valida el callback OAuth, intercambia el código, consulta el rol y redirige al panel.
+ * @returns {Promise<void>}
+ */
 async function procesarCallback () {
     const parametros = new URLSearchParams(window.location.search);
 

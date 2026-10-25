@@ -1,10 +1,19 @@
-// Archivo de acciones rápidas
+/**
+ * @fileoverview Implementa acciones de prueba para los controles rápidos del dashboard.
+ * @author Cassandra Vanessa Padilla Barovier (A01753547, ITC)
+ * @author Giancarlo Moreno Vázquez (A01803172, ITC)
+ * @author Alexander Mejia Tovar (A01803181, ITC)
+ * @author César Ariel Rodríguez Sandoval (A01802924, ITC)
+ * @author Santiago Abraham Rios Palacios (A01802727, ITC)
+ */
 
+// Registra los manejadores de ejemplo una vez que existan la tabla y sus modales.
 document.addEventListener('DOMContentLoaded', () => {
     const tabla = document.querySelector('table');
     const modalEstado = document.getElementById('modal-estado');
     const modalAsignacion = document.getElementById('modal-asignacion');
 
+    // La delegación permite atender también botones dentro de filas generadas en ejecución.
     if (tabla) {
         tabla.addEventListener('click', (e) => {
             // Abrir Modal "Asignar Estado"
@@ -29,7 +38,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Funciones para cerrar modales
+    // Los botones de cierre ocultan cada modal sin persistir datos.
     document.getElementById('boton-cancelar-modal')?.addEventListener('click', () => {
         modalEstado.style.display = 'none';
     });
@@ -47,7 +56,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
 
-    // Funciones para guardar cambios
+    // En esta página de pruebas, guardar solo muestra una confirmación local.
     const nuevoEstado = document.getElementById('nuevoEstado');
     document.getElementById('guardarEstado')?.addEventListener('click', () => {
         alert(`El estado cambió a ${nuevoEstado.value}`);
@@ -67,7 +76,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-// SE VA A BORRAR ESTO DE AQUI
+// Flujo experimental: simula guardar estatus y usa la API, separado de los manejadores de prueba.
 document.addEventListener('click', function(event) {
     const botonAsignarEstado = event.target.closest('.boton-asignar-estado');
 
@@ -145,4 +154,3 @@ document.getElementById('cerrar-estado').addEventListener('click', function() {
 document.getElementById('boton-cancelar-modal').addEventListener('click', function() {
     document.getElementById('modal-estado').style.display = 'none';
 });
-

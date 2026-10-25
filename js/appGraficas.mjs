@@ -1,4 +1,12 @@
 // js/app.mjs
+/**
+ * @fileoverview Carga las métricas administrativas y conecta los datos con sus gráficas.
+ * @author Cassandra Vanessa Padilla Barovier (A01753547, ITC)
+ * @author Giancarlo Moreno Vázquez (A01803172, ITC)
+ * @author Alexander Mejia Tovar (A01803181, ITC)
+ * @author César Ariel Rodríguez Sandoval (A01802924, ITC)
+ * @author Santiago Abraham Rios Palacios (A01802727, ITC)
+ */
 import {
   obtenerReportesPorEstatus,
   obtenerReportesAtravesTiempo,
@@ -80,6 +88,10 @@ async function inicializarDashboard() {
 }
 
 
+/**
+ * Carga los indicadores numéricos y los coloca en sus elementos HTML.
+ * @returns {Promise<void>}
+ */
 async function inicializarDatos() {
   try {
     const [
@@ -113,6 +125,7 @@ async function inicializarDatos() {
  * Escucha el estado del DOM para asegurar que la página esté completamente cargada 
  * antes de inicializar el dashboard. Si el documento ya está listo, lo ejecuta de inmediato.
  */
+// Inicializa cada grupo de componentes después de que se construya el DOM.
 if (document.readyState === 'loading') {
   document.addEventListener('DOMContentLoaded', inicializarDashboard);
 } else {

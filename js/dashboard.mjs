@@ -1,3 +1,16 @@
+/**
+ * @fileoverview Renderiza el resumen de métricas y el listado del dashboard administrativo.
+ * @author Cassandra Vanessa Padilla Barovier (A01753547, ITC)
+ * @author Giancarlo Moreno Vázquez (A01803172, ITC)
+ * @author Alexander Mejia Tovar (A01803181, ITC)
+ * @author César Ariel Rodríguez Sandoval (A01802924, ITC)
+ * @author Santiago Abraham Rios Palacios (A01802727, ITC)
+ */
+/**
+ * Actualiza los contadores del dashboard a partir de las cantidades recibidas del API.
+ * @param {{total?: number, completados?: number, en_proceso?: number, pendientes?: number}} datos
+ * @returns {void}
+ */
 export function datosCantidadDeReportes({ total = 0, completados = 0, en_proceso = 0, pendientes = 0} = {}) {
     const cantidadTotal = document.getElementById('cantidad-total');
     const cantidadCompletados = document.getElementById('cantidad-completados');
@@ -14,6 +27,11 @@ export function datosCantidadDeReportes({ total = 0, completados = 0, en_proceso
     });
 }
 
+/**
+ * Inserta en la tabla del dashboard hasta cinco reportes recientes y sus acciones.
+ * @param {Array<Object>} datos Reportes devueltos por el servicio.
+ * @returns {void}
+ */
 export function detallesReportes(datos) {
     const tbody = document.getElementById('cuerpo-tabla');
 
@@ -83,6 +101,7 @@ export function detallesReportes(datos) {
 
 }
 
+// Delegación de eventos: los botones aparecen dinámicamente al generar las filas.
 document.addEventListener('click', async function(event) {
     const botonVer = event.target.closest('.boton-ver');
     // const padre = ((botonVer.parentElement).parentElement).parentElement;

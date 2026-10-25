@@ -1,9 +1,17 @@
+/**
+ * @fileoverview Controla la apertura, edición y envío de acciones de los modales de reportes.
+ * @author Cassandra Vanessa Padilla Barovier (A01753547, ITC)
+ * @author Giancarlo Moreno Vázquez (A01803172, ITC)
+ * @author Alexander Mejia Tovar (A01803181, ITC)
+ * @author César Ariel Rodríguez Sandoval (A01802924, ITC)
+ * @author Santiago Abraham Rios Palacios (A01802727, ITC)
+ */
 import { API_URL } from "./api_url.mjs";
 
 let filaSeleccionada = null;
 let folioSeleccionado = null;
 
-// ------------------------------------ ASIGNAR ESTADO ------------------------------------
+// Captura el reporte elegido mediante delegación, ya que las filas se crean dinámicamente.
 document.addEventListener('click', function(event) {
     const botonAsignarEstado = event.target.closest('.boton-asignar-estado');
 
@@ -27,6 +35,7 @@ document.addEventListener('click', function(event) {
 });
 
 
+// Valida la selección y sesión, persiste el estado con PATCH y actualiza la fila al responder.
 document.getElementById('guardarEstado').addEventListener('click', async function() {
     const selectNuevoEstado = document.getElementById('nuevoEstado');
     const nuevoEstado = selectNuevoEstado.value;
@@ -84,6 +93,7 @@ try {
 
 });
 
+// Cierra el modal sin guardar cambios.
 document.getElementById('cerrar-estado').addEventListener('click', function() {
     document.getElementById('modal-estado').style.display = 'none';
 });
@@ -97,6 +107,7 @@ document.getElementById('boton-cancelar-modal').addEventListener('click', functi
 // ------------------------------------ ASIGNAR AUTORIDAD ------------------------------------
 const selectNuevaAutoridad = document.getElementById('nuevaAutoridad');
 
+// Carga la autoridad actual y las opciones que corresponden al municipio de la fila.
 document.addEventListener('click', async function(event) {
     const botonAsignarAutoridad = event.target.closest('.boton-asignar-autoridad');
 
@@ -171,6 +182,7 @@ document.addEventListener('click', async function(event) {
 });
 
 
+// Envía la nueva asignación del reporte y el comentario asociados al modal.
 document.getElementById('guardarAsignacion').addEventListener('click', async function () {
     const selectNuevaAutoridad = document.getElementById('nuevaAutoridad');
     const nuevaAutoridad = selectNuevaAutoridad.value;

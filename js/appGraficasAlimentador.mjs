@@ -1,4 +1,12 @@
 // js/app_alimentador.mjs
+/**
+ * @fileoverview Carga métricas municipales e inicializa sus gráficas y visualizaciones.
+ * @author Cassandra Vanessa Padilla Barovier (A01753547, ITC)
+ * @author Giancarlo Moreno Vázquez (A01803172, ITC)
+ * @author Alexander Mejia Tovar (A01803181, ITC)
+ * @author César Ariel Rodríguez Sandoval (A01802924, ITC)
+ * @author Santiago Abraham Rios Palacios (A01802727, ITC)
+ */
 import {
   obtenerEstatusPorAlimentador,
   obtenerReportesPorTiempoPorAlimentador,
@@ -25,11 +33,11 @@ import {
   canvasReportesPorAutoridad
 } from './graficasAlimentador.mjs';
 
-// Obtener el correo del alimentador autenticado
+// Usa el correo del usuario para solicitar únicamente datos de su ámbito municipal.
 const correoAlimentador = localStorage.getItem('correoAlimentador') || 'giancarlo.morenov@gmail.com';
 
 /**
- * Inicializa el dashboard de gráficas filtrado por el municipio del alimentador.
+ * Consulta en paralelo las series municipales y las conecta con sus visualizaciones.
  * 
  * @async
  * @function inicializarDashboardAlimentador
@@ -74,7 +82,7 @@ async function inicializarDashboardAlimentador() {
 }
 
 /**
- * Inicializa las tarjetas de KPIs/Métricas numéricas filtradas por el alimentador.
+ * Consulta los indicadores municipales y actualiza las tarjetas numéricas.
  * 
  * @async
  * @function inicializarDatosAlimentador
@@ -111,7 +119,7 @@ async function inicializarDatosAlimentador() {
 }
 
 /**
- * Inicialización unificada de componentes cuando el DOM esté listo.
+ * Inicia las gráficas y métricas en paralelo una vez que la interfaz está disponible.
  */
 function cargarDashboard() {
   inicializarDashboardAlimentador();

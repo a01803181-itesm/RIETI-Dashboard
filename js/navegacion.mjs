@@ -1,8 +1,14 @@
 /**
  * Configura los eventos de navegación y filtrado para la interfaz de gestión o visualización de reportes.
+ * @fileoverview Actualiza la información del usuario y los elementos de navegación compartidos.
+ * @author Cassandra Vanessa Padilla Barovier (A01753547, ITC)
+ * @author Giancarlo Moreno Vázquez (A01803172, ITC)
+ * @author Alexander Mejia Tovar (A01803181, ITC)
+ * @author César Ariel Rodríguez Sandoval (A01802924, ITC)
+ * @author Santiago Abraham Rios Palacios (A01802727, ITC)
  */
 
-// Ver listado completo de reportes
+// Los accesos rápidos llevan al listado con una categoría de estatus en la URL.
 
 import { API_URL } from "./api_url.mjs";
 
@@ -16,7 +22,7 @@ if(botonVerTodosListadoReportes){
 
 
 
-// Ver detalles de un reporte
+// Conecta botones estáticos de detalle presentes en páginas que no generan filas dinámicas.
 const botonVerReporteIndividual = document.querySelectorAll('.boton-ver');
 
 if(botonVerReporteIndividual){
@@ -29,7 +35,7 @@ if(botonVerReporteIndividual){
 }
 
 
-// Botones Acciones Rápidas
+// Cada acción abre la gestión con el filtro correspondiente preseleccionado.
 const botonRevisarReportesPendientes = document.getElementById('revisar-reportes-pendientes');
 
 if(botonRevisarReportesPendientes) {
@@ -68,6 +74,10 @@ if(botonRevisarReportesProgreso) {
 //     // }
 // });
 
+/**
+ * Consulta la identidad autenticada y muestra el nombre; sin token indica que no hay sesión.
+ * @returns {Promise<void>}
+ */
 async function mostrarNombre() {
     const elementoNombre = document.getElementById("nombre-usuario");
 
@@ -105,8 +115,6 @@ async function mostrarNombre() {
 }
 
 mostrarNombre ();
-
-
 
 
 

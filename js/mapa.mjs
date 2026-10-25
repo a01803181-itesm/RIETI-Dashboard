@@ -1,3 +1,12 @@
+/**
+ * @fileoverview Inicializa el mapa de ubicación del reporte cuando existe su contenedor.
+ * @author Cassandra Vanessa Padilla Barovier (A01753547, ITC)
+ * @author Giancarlo Moreno Vázquez (A01803172, ITC)
+ * @author Alexander Mejia Tovar (A01803181, ITC)
+ * @author César Ariel Rodríguez Sandoval (A01802924, ITC)
+ * @author Santiago Abraham Rios Palacios (A01802727, ITC)
+ */
+// Crea el mapa de ejemplo solo en las páginas que incluyen su contenedor Leaflet.
 const contenedorMapaDetalle = document.getElementById('mapa-detalle-reporte');
 
 if (contenedorMapaDetalle) {

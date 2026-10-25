@@ -1,7 +1,15 @@
+/**
+ * @fileoverview Funciones de acceso HTTP a estadísticas, coordenadas y reportes de RIETI.
+ * Cada operación devuelve los datos JSON del servicio y propaga los errores de petición.
+ * @author Cassandra Vanessa Padilla Barovier (A01753547, ITC)
+ * @author Giancarlo Moreno Vázquez (A01803172, ITC)
+ * @author Alexander Mejia Tovar (A01803181, ITC)
+ * @author César Ariel Rodríguez Sandoval (A01802924, ITC)
+ * @author Santiago Abraham Rios Palacios (A01802727, ITC)
+ */
 import { API_URL } from './api_url.mjs';
 
 
-// export async function 
 
 
 // OBTENER REPORTES POR FECHA
@@ -209,6 +217,11 @@ export async function obtenerPorcentajeReportesEnProceso() {
     }
 }
 
+/**
+ * Obtiene los conteos globales de reportes agrupados por estatus.
+ * @returns {Promise<Object>} Cantidades por estado.
+ * @throws {Error} Si falla la solicitud HTTP o la lectura de la respuesta.
+ */
 export async function obtenerCantidadesDeReportes() {
     try {
         const response = await fetch(`${API_URL}/v1/reportes/por-estatus/cantidad`);
@@ -223,6 +236,11 @@ export async function obtenerCantidadesDeReportes() {
     }
 }
 
+/**
+ * Obtiene la distribución global de reportes por rango horario.
+ * @returns {Promise<Array<Object>>} Categorías horarias y cantidades.
+ * @throws {Error} Si falla la solicitud HTTP o la lectura de la respuesta.
+ */
 export async function obtenerReportesRangoHora() {
     try{
         const response = await fetch(`${API_URL}/v1/reportes/estadisticas/por-rango-hora`);
@@ -237,7 +255,12 @@ export async function obtenerReportesRangoHora() {
     
 }
 
-// 1. Obtener conteo de reportes por estatus para el municipio del alimentador
+/**
+ * Obtiene los conteos por estatus del ámbito municipal de un alimentador.
+ * @param {string} correoAlimentador Correo que identifica al alimentador.
+ * @returns {Promise<Array<Object>>} Conteos agrupados por estatus.
+ * @throws {Error} Si falla la solicitud HTTP o la lectura de la respuesta.
+ */
 export async function obtenerEstatusPorAlimentador(correoAlimentador) {
   try {
     const response = await fetch(
@@ -253,7 +276,12 @@ export async function obtenerEstatusPorAlimentador(correoAlimentador) {
   }
 }
 
-// 2. Obtener estadísticas de reportes por mes para el municipio del alimentador
+/**
+ * Obtiene la serie temporal mensual de reportes de un alimentador.
+ * @param {string} correoAlimentador Correo que identifica al alimentador.
+ * @returns {Promise<Array<Object>>} Totales de reportes por periodo.
+ * @throws {Error} Si falla la solicitud HTTP o la lectura de la respuesta.
+ */
 export async function obtenerReportesPorTiempoPorAlimentador(correoAlimentador) {
   try {
     const response = await fetch(
@@ -269,7 +297,12 @@ export async function obtenerReportesPorTiempoPorAlimentador(correoAlimentador) 
   }
 }
 
-// 3. Obtener reporte de frecuencia por rango de hora para el municipio del alimentador
+/**
+ * Obtiene la distribución horaria de reportes del alimentador.
+ * @param {string} correoAlimentador Correo que identifica al alimentador.
+ * @returns {Promise<Array<Object>>} Totales agrupados por hora.
+ * @throws {Error} Si falla la solicitud HTTP o la lectura de la respuesta.
+ */
 export async function obtenerReportesRangoHoraPorAlimentador(correoAlimentador) {
   try {
     const response = await fetch(
@@ -285,7 +318,12 @@ export async function obtenerReportesRangoHoraPorAlimentador(correoAlimentador) 
   }
 }
 
-// 4. Obtener coordenadas del mapa de calor para el municipio del alimentador
+/**
+ * Obtiene coordenadas de reportes para el mapa de calor municipal.
+ * @param {string} correoAlimentador Correo que identifica al alimentador.
+ * @returns {Promise<Array<Object>>} Coordenadas geográficas de los reportes.
+ * @throws {Error} Si falla la solicitud HTTP o la lectura de la respuesta.
+ */
 export async function obtenerCoordenadasMapaPorAlimentador(correoAlimentador) {
   try {
     const response = await fetch(
@@ -301,7 +339,12 @@ export async function obtenerCoordenadasMapaPorAlimentador(correoAlimentador) {
   }
 }
 
-// 5. Obtener promedio de días de resolución para el municipio del alimentador
+/**
+ * Obtiene el promedio de resolución de reportes en el ámbito del alimentador.
+ * @param {string} correoAlimentador Correo que identifica al alimentador.
+ * @returns {Promise<Object>} Métrica de promedio de resolución.
+ * @throws {Error} Si falla la solicitud HTTP o la lectura de la respuesta.
+ */
 export async function obtenerPromedioResolucionPorAlimentador(correoAlimentador) {
   try {
     const response = await fetch(
@@ -317,7 +360,12 @@ export async function obtenerPromedioResolucionPorAlimentador(correoAlimentador)
   }
 }
 
-// 6. Obtener reportes pendientes creados en la última semana para el municipio del alimentador
+/**
+ * Obtiene el indicador de reportes pendientes de la última semana para el alimentador.
+ * @param {string} correoAlimentador Correo que identifica al alimentador.
+ * @returns {Promise<Object>} Métrica de reportes pendientes recientes.
+ * @throws {Error} Si falla la solicitud HTTP o la lectura de la respuesta.
+ */
 export async function obtenerPendientesUltimaSemanaPorAlimentador(correoAlimentador) {
   try {
     const response = await fetch(
@@ -333,7 +381,12 @@ export async function obtenerPendientesUltimaSemanaPorAlimentador(correoAlimenta
   }
 }
 
-// 7. Obtener porcentaje de reportes en proceso de seguimiento para el municipio del alimentador
+/**
+ * Obtiene el porcentaje de reportes en proceso para el ámbito municipal.
+ * @param {string} correoAlimentador Correo que identifica al alimentador.
+ * @returns {Promise<Object>} Porcentaje de reportes en proceso.
+ * @throws {Error} Si falla la solicitud HTTP o la lectura de la respuesta.
+ */
 export async function obtenerPorcentajeEnProcesoPorAlimentador(correoAlimentador) {
   try {
     const response = await fetch(
@@ -349,7 +402,12 @@ export async function obtenerPorcentajeEnProcesoPorAlimentador(correoAlimentador
   }
 }
 
-// 8. Obtener porcentaje de reportes pendientes para el municipio del alimentador
+/**
+ * Obtiene el porcentaje de reportes pendientes para el ámbito municipal.
+ * @param {string} correoAlimentador Correo que identifica al alimentador.
+ * @returns {Promise<Object>} Porcentaje de reportes pendientes.
+ * @throws {Error} Si falla la solicitud HTTP o la lectura de la respuesta.
+ */
 export async function obtenerPorcentajePendientesPorAlimentador(correoAlimentador) {
   try {
     const response = await fetch(
@@ -365,6 +423,11 @@ export async function obtenerPorcentajePendientesPorAlimentador(correoAlimentado
   }
 }
 
+/**
+ * Obtiene la colección de reportes con sus datos de detalle y estatus.
+ * @returns {Promise<Array<Object>>} Reportes listos para alimentar las tablas.
+ * @throws {Error} Si falla la solicitud HTTP o la lectura de la respuesta.
+ */
 export async function obtenerDetallesReportes() {
     try{
         const response = await fetch(`${API_URL}/v1/reportes/detalles/estatus`);
@@ -378,6 +441,12 @@ export async function obtenerDetallesReportes() {
     }
 }
 
+/**
+ * Obtiene los datos de un reporte identificado por folio.
+ * @param {string} folio Identificador único del reporte.
+ * @returns {Promise<Object>} Datos del reporte.
+ * @throws {Error} Si falla la solicitud HTTP o la lectura de la respuesta.
+ */
 export async function obtenerDetallesReportePorFolio(folio) {
   try {
     const response = await fetch(`${API_URL}/v1/reportes/${encodeURIComponent(folio)}`);
@@ -392,7 +461,11 @@ export async function obtenerDetallesReportePorFolio(folio) {
 }
 
 
-// 9. Obtener estadísticas de reportes por tipo de trabajo (Global)
+/**
+ * Obtiene la distribución global de reportes por tipo de trabajo.
+ * @returns {Promise<Array<Object>>} Categorías y cantidades de reportes.
+ * @throws {Error} Si falla la solicitud HTTP o la lectura de la respuesta.
+ */
 export async function obtenerReportesPorTipoTrabajo() {
   try {
     const response = await fetch(`${API_URL}/v1/reportes/estadisticas/tipo-trabajo`);
@@ -406,7 +479,12 @@ export async function obtenerReportesPorTipoTrabajo() {
   }
 }
 
-// 10. Obtener estadísticas de reportes por tipo de trabajo para el municipio del alimentador
+/**
+ * Obtiene estadísticas por tipo de trabajo del ámbito del alimentador.
+ * @param {string} correoAlimentador Correo que identifica al alimentador.
+ * @returns {Promise<Array<Object>>} Categorías y cantidades municipales.
+ * @throws {Error} Si falla la solicitud HTTP o la lectura de la respuesta.
+ */
 export async function obtenerReportesPorTipoTrabajoPorAlimentador(correoAlimentador) {
   try {
     const response = await fetch(
@@ -422,7 +500,12 @@ export async function obtenerReportesPorTipoTrabajoPorAlimentador(correoAlimenta
   }
 }
 
-// 11. Obtener reportes por autoridad/alimentador del municipio del alimentador
+/**
+ * Obtiene la distribución de reportes por autoridad para el alimentador.
+ * @param {string} correoAlimentador Correo que identifica al alimentador.
+ * @returns {Promise<Array<Object>>} Autoridades y cantidades.
+ * @throws {Error} Si falla la solicitud HTTP o la lectura de la respuesta.
+ */
 export async function obtenerReportesPorAutoridadPorAlimentador(correoAlimentador) {
   try {
     const response = await fetch(
@@ -438,6 +521,12 @@ export async function obtenerReportesPorAutoridadPorAlimentador(correoAlimentado
   }
 }
 
+/**
+ * Obtiene el detalle del reporte, incluyendo su estatus actual.
+ * @param {string} folio Identificador único del reporte.
+ * @returns {Promise<Object>} Datos del reporte con estado.
+ * @throws {Error} Si falla la solicitud HTTP o la lectura de la respuesta.
+ */
 export async function obtenerDetallesReportePorFolioConEstatus(folio) {
   try {
     const response = await fetch(`${API_URL}/v1/reportes/detalles/estatus/${encodeURIComponent(folio)}`);
@@ -451,6 +540,12 @@ export async function obtenerDetallesReportePorFolioConEstatus(folio) {
   }
 }
 
+/**
+ * Obtiene los reportes con estatus asignados al ámbito de un alimentador.
+ * @param {string} correoAlimentador Correo que identifica al alimentador.
+ * @returns {Promise<Array<Object>>} Reportes municipales con sus estados.
+ * @throws {Error} Si falla la solicitud HTTP o la lectura de la respuesta.
+ */
 export async function obtenerReportesConEstatusPorAlimentador(correoAlimentador) {
     try {
         const response = await fetch(
@@ -467,7 +562,12 @@ export async function obtenerReportesConEstatusPorAlimentador(correoAlimentador)
     }
 }
 
-// Obtener métricas consolidadas (totales, completados, en proceso, pendientes) por alimentador
+/**
+ * Obtiene los conteos municipales consolidados por estatus.
+ * @param {string} correoAlimentador Correo que identifica al alimentador.
+ * @returns {Promise<Object>} Totales, completados, en proceso y pendientes.
+ * @throws {Error} Si falla la solicitud HTTP o la lectura de la respuesta.
+ */
 export async function obtenerCantidadesDeReportesPorAlimentador(correoAlimentador) {
   try {
     const response = await fetch(

@@ -1,5 +1,13 @@
 // js/appDashboard.mjs
-import { 
+/**
+ * @fileoverview Coordina la carga de datos y componentes del dashboard municipal.
+ * @author Cassandra Vanessa Padilla Barovier (A01753547, ITC)
+ * @author Giancarlo Moreno Vázquez (A01803172, ITC)
+ * @author Alexander Mejia Tovar (A01803181, ITC)
+ * @author César Ariel Rodríguez Sandoval (A01802924, ITC)
+ * @author Santiago Abraham Rios Palacios (A01802727, ITC)
+ */
+import {
     obtenerCantidadesDeReportesPorAlimentador,
     obtenerPromedioResolucionPorAlimentador 
 } from './api_service.mjs';
@@ -9,11 +17,12 @@ import {
     renderizarPromedioResolucion 
 } from './dashboardAlimentador.mjs';
 
-// Obtener el correo del alimentador autenticado (con fallback)
+// Identifica el ámbito municipal de las consultas de métricas.
 const correoAlimentador = localStorage.getItem('correoAlimentador') || 'giancarlo.morenov@gmail.com';
 
 /**
- * Inicializa y carga todos los datos del Dashboard Municipal.
+ * Consulta las métricas municipales en paralelo y actualiza las tarjetas del dashboard.
+ * @returns {Promise<void>}
  */
 async function inicializarAppDashboard() {
     try {
@@ -34,7 +43,7 @@ async function inicializarAppDashboard() {
     }
 }
 
-// Escuchar la carga del DOM
+// Ejecuta la carga cuando los elementos de las tarjetas ya están disponibles.
 if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', inicializarAppDashboard);
 } else {

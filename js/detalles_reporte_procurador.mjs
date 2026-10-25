@@ -1,6 +1,14 @@
+/**
+ * @fileoverview Consulta y muestra el detalle y la evidencia del reporte municipal seleccionado.
+ * @author Cassandra Vanessa Padilla Barovier (A01753547, ITC)
+ * @author Giancarlo Moreno Vázquez (A01803172, ITC)
+ * @author Alexander Mejia Tovar (A01803181, ITC)
+ * @author César Ariel Rodríguez Sandoval (A01802924, ITC)
+ * @author Santiago Abraham Rios Palacios (A01802727, ITC)
+ */
 import { API_URL } from "./api_url.mjs";
 
-// Pantalla de carga
+// Oculta el indicador visual cuando el navegador termina de cargar la página.
 window.addEventListener('load', function() {
     const pantallaCarga = document.getElementById('pantalla-carga');
     if (pantallaCarga) {
@@ -8,7 +16,7 @@ window.addEventListener('load', function() {
     }
 });
 
-// Acción al cargar la página
+// Prioriza el folio de URL; si falta, recupera el reporte seleccionado desde sessionStorage.
 document.addEventListener('DOMContentLoaded', async function() {
     const urlParams = new URLSearchParams(window.location.search);
     const folioOriginal = urlParams.get('folio');
@@ -50,7 +58,11 @@ document.addEventListener('DOMContentLoaded', async function() {
     console.error('No se especificó un folio válido en la URL ni en sessionStorage');
 });
 
-// Función para mostrar detalles
+/**
+ * Presenta los datos del reporte, su estado, ubicación e historial en la página.
+ * @param {Object} reporte Datos del reporte provenientes del API o sessionStorage.
+ * @returns {void}
+ */
 function mostrarDetalles(reporte) {
     if (!reporte) return;
 
@@ -121,7 +133,11 @@ function mostrarDetalles(reporte) {
     }
 }
 
-// Función para obtener e insertar evidencias fotográficas
+/**
+ * Recupera y renderiza las evidencias fotográficas vinculadas con un folio.
+ * @param {string} folio Identificador del reporte.
+ * @returns {Promise<void>}
+ */
 async function MostrarEvidencia(folio) {
     const contenedor = document.getElementById("evidencia-reporte");
     if (!contenedor) return;
